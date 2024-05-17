@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Mira</string>
+    <string name="hello_mira">Hello Mira!!!</string>
 </resources>
