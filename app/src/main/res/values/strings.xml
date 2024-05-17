@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Mira</string>
-    <string name="hello_mira">Hello Mira!!!</string>
+    <string name="title_home">Home</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_profile">Profil</string>
+    <string name="title_reservation">Reservation</string>
+    <string name="title_results">Results</string>
+
 </resources>
