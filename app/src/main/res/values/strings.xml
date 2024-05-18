@@ -13,5 +13,8 @@
     <string name="reservation_history">Reservation History</string>
     <string name="check_up_result">Check Up Result</string>
     <string name="health_article">Health Article</string>
+    <string name="result">Result</string>
+    <string name="profile">Profile</string>
+    <string name="reservation">Reservation</string>
 
 </resources>
