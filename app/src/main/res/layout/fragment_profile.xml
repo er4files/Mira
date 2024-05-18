@@ -20,7 +20,7 @@
             android:id="@+id/profile_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Profile"
+            android:text="@string/profile"
             android:textColor="@color/gray"
             android:textSize="20sp"
             android:textStyle="bold"
