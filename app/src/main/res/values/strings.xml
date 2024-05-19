@@ -16,5 +16,9 @@
     <string name="result">Result</string>
     <string name="profile">Profile</string>
     <string name="reservation">Reservation</string>
+    <string name="selengkapnya">Selengkapnya...</string>
+    <string name="pemeriksaan_extrimitas_atas_pergelangan_tangan">Pemeriksaan Extrimitas Atas - Pergelangan Tangan</string>
+    <string name="rahmad_era_sugiarto">Rahmad Era Sugiarto</string>
+    <string name="tanggal_lahir">19 Januari 2024</string>
 
 </resources>
