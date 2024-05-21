@@ -2,29 +2,22 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.mira.mira.view.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_resultsFragment"
+            app:destination="@id/navigation_result" />
+    </fragment>
 
-    <fragment
-        android:id="@+id/navigation_reservation"
-        android:name="com.mira.mira.view.reservation.ReservationFragment"
-        android:label="@string/title_reservation"
-        tools:layout="@layout/fragment_reservation" />
-
-    <fragment
-        android:id="@+id/navigation_profile"
-        android:name="com.mira.mira.view.profile.ProfileFragment"
-        android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/navigation_result"
         android:name="com.mira.mira.view.results.ResultsFragment"
         android:label="@string/title_results"
         tools:layout="@layout/fragment_results" />
+
 </navigation>
