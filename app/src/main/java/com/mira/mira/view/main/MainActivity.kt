@@ -1,12 +1,12 @@
-package com.mira.mira
+package com.mira.mira.view.main
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.mira.mira.R
 import com.mira.mira.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +26,10 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_buletin, R.id.navigation_profile
+                R.id.navigation_home,
+                R.id.navigation_reservation,
+                R.id.navigation_result,
+                R.id.navigation_profile
             )
         )
         // Hapus baris berikut

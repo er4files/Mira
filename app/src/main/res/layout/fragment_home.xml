@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e8e8f9"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".view.home.HomeFragment">
 
     <!-- Top Header Layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -75,7 +75,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/feature_home"
+        android:id="@+id/feature_constraint"
         android:layout_width="match_parent"
         android:layout_height="320dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -159,6 +159,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/feature_reservation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
@@ -186,6 +187,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/feature_history"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
@@ -214,6 +216,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/feature_result"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
@@ -241,6 +244,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/feature_article"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
