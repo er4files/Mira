@@ -1,6 +1,7 @@
 package com.mira.mira.view.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,10 +27,12 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.featureResult.setOnClickListener {
-            findNavController().navigate(R.id.navigation_result)
+        with(binding){
+            featureResult.setOnClickListener {
+                Log.d("Navigation", "Attempting to navigate to ResultsFragment")
+                findNavController().navigate(R.id.action_navigation_home_to_navigation_result)
+            }
         }
-
     }
 
     override fun onDestroyView() {

@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="com.mira.mira.view.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_result"
+            app:destination="@id/navigation_result" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_reservation"
@@ -27,4 +31,5 @@
         android:name="com.mira.mira.view.results.ResultsFragment"
         android:label="@string/title_results"
         tools:layout="@layout/fragment_results" />
+
 </navigation>
