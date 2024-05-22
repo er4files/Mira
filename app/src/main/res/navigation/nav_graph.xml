@@ -2,22 +2,21 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/navigation_home">
+    app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/homeFragment"
         android:name="com.mira.mira.view.home.HomeFragment"
-        android:label="@string/title_home"
+        android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_navigation_home_to_resultsFragment"
-            app:destination="@id/navigation_result" />
+            app:destination="@id/resultsFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_result"
+        android:id="@+id/resultsFragment"
         android:name="com.mira.mira.view.results.ResultsFragment"
-        android:label="@string/title_results"
+        android:label="ResultsFragment"
         tools:layout="@layout/fragment_results" />
-
 </navigation>
