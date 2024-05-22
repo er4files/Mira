@@ -27,9 +27,9 @@ class ResultsFragment : Fragment() {
         binding.rcListresult.layoutManager = LinearLayoutManager(context)
         binding.rcListresult.adapter = adapter
 
-        viewModel.results.observe(viewLifecycleOwner, { results ->
+        viewModel.results.observe(viewLifecycleOwner) { results ->
             adapter.updateData(results)
-        })
+        }
 
         return binding.root
     }
