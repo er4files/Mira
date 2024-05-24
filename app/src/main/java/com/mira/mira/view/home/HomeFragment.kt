@@ -24,17 +24,6 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        with(binding){
-            featureResult.setOnClickListener {
-                Log.d("Navigation", "Attempting to navigate to ResultsFragment")
-                findNavController().navigate(R.id.action_navigation_home_to_navigation_result)
-            }
-        }
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
