@@ -10,7 +10,6 @@ class ResultsViewModel : ViewModel() {
     val results: LiveData<List<ResultItem>> get() = _results
 
     init {
-        // Data contoh, ganti dengan logika pengambilan data yang sebenarnya
         _results.value = listOf(
             ResultItem(
                 "Rahmad Era Sugiarto",
