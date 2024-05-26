@@ -10,5 +10,8 @@
     <color name="blue">#3F51B5</color> <!-- PRIMARY COLOR -->
     <color name="yello">#FFEB3B</color> <!-- PRIMARY COLOR -->
     <color name="divider_gray">#BDBDBD</color> <!-- DIVIDER COLOR -->
+    <color name="read_background">#E3E0E0</color>
+    <color name="unread_background">#FFFFFF</color>
+
 
 </resources>
