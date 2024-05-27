@@ -28,4 +28,15 @@
     <string name="profile_appointment_history">Riwayat Janji</string>
     <string name="progile_settings">Pengaturan</string>
     <string name="profile_logout">KELUAR</string>
+    <string name="full_name">Nama Lengkal</string>
+    <string name="reservation_birth">Tanggal Lahir</string>
+    <string name="reservation_gender">Jenis Kelamin</string>
+    <string name="reservation_rb_male">Laki-laki</string>
+    <string name="reservation_rb_female">Perempuan</string>
+    <string name="reservation_city">Kota</string>
+    <string name="reservation_province">Provinsi</string>
+    <string name="reservation_postal_code">Kode Pos</string>
+    <string name="email">Email</string>
+    <string name="reservation_phone_number">No. Ponsel</string>
+    <string name="reservation_button_reserve">Pesan</string>
 </resources>
