@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mira.mira.R
 import com.mira.mira.data.model.Article
 import com.mira.mira.view.adapter.ArticleAdapter
+import com.mira.mira.view.history.HistoryActivity
 import com.mira.mira.view.notification.NotificationActivity
 
 class HomeFragment : Fragment() {
@@ -34,6 +36,13 @@ class HomeFragment : Fragment() {
         val notificationIcon: RelativeLayout = view.findViewById(R.id.notification_icon)
         notificationIcon.setOnClickListener {
             val intent = Intent(activity, NotificationActivity::class.java)
+            startActivity(intent)
+        }
+
+        // History
+        val featureHistory: LinearLayout = view.findViewById(R.id.feature_history)
+        featureHistory.setOnClickListener {
+            val intent = Intent(activity, HistoryActivity::class.java)
             startActivity(intent)
         }
 

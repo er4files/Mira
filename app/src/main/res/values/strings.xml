@@ -9,9 +9,9 @@
     <string name="user">Rahmad Era Sugiarto</string>
     <string name="hospital">RSUD dr. Soebandi</string>
     <string name="features">Features</string>
-    <string name="book_a_reservation">Book a Reservation</string>
+    <string name="form_a_reservation">Form a Reservation</string>
     <string name="reservation_history">Reservation History</string>
-    <string name="check_up_result">Check Up Result</string>
+    <string name="chat_bot">Chat Bot </string>
     <string name="health_article">Health Article</string>
     <string name="result">Result</string>
     <string name="profile">Profile</string>
@@ -39,5 +39,10 @@
     <string name="email">Email</string>
     <string name="reservation_phone_number">Phone Number</string>
     <string name="reservation_button_reserve">Reserve</string>
+
+        <string name="status_completed">Selesai</string>
+        <string name="status_upcoming">Akan Datang</string>
+
+
 
 </resources>
