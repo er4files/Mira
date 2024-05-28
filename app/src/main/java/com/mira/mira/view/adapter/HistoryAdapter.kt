@@ -30,7 +30,7 @@ class HistoryAdapter(private val historyList: List<HistoryItem>) : RecyclerView.
             holder.statusTextView.text = "Selesai"
         } else {
             holder.statusTextView.setBackgroundResource(R.drawable.background_status_green)
-            holder.statusTextView.text = "Akan Datang"
+            holder.statusTextView.text = "Akan datang"
         }
     }
 
