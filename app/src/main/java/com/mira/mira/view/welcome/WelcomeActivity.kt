@@ -1,29 +1,34 @@
-package com.mira.mira.view.signup
+package com.mira.mira.view.welcome
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.mira.mira.R
-import com.mira.mira.databinding.ActivitySignupBinding
+import com.mira.mira.databinding.ActivityWelcomeBinding
+import com.mira.mira.view.login.LoginActivity
+import com.mira.mira.view.signup.SignupActivity
 
-class SignupActivity : AppCompatActivity() {
-    private lateinit var binding: ActivitySignupBinding
+class WelcomeActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityWelcomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySignupBinding.inflate(layoutInflater)
+        binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupView()
         setupAction()
+        animateButtons()
+    }
 
-        val backIcon: ImageView = findViewById(R.id.back_icon)
-        backIcon.setOnClickListener {
-            finish()
-        }
+    private fun animateButtons() {
+        val loginButton = binding.loginButton
+        val signupButton = binding.signupButton
+
+        loginButton.animate().alpha(1f).duration = 1000
+        signupButton.animate().alpha(1f).duration = 1000
     }
 
     private fun setupView() {
@@ -40,18 +45,12 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
-        binding.signupButton.setOnClickListener {
-            val email = binding.emailEditText.text.toString()
+        binding.loginButton.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
 
-            androidx.appcompat.app.AlertDialog.Builder(this).apply {
-                setTitle("Yeah!")
-                setMessage("Akun dengan $email sudah dibuat. lakukan login dengan email yang sudah terdaftar.")
-                setPositiveButton("Lanjut") { _, _ ->
-                    finish()
-                }
-                create()
-                show()
-            }
+        binding.signupButton.setOnClickListener {
+            startActivity(Intent(this, SignupActivity::class.java))
         }
     }
 }

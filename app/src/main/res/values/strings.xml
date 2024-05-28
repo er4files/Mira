@@ -27,5 +27,6 @@
     <string name="profile_appointment_history">Appointment History</string>
     <string name="progile_settings">Settings</string>
     <string name="profile_logout">LOG OUT</string>
+    <string name="login">Login</string>
 
 </resources>
