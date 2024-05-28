@@ -30,9 +30,16 @@ class ResultsAdapter(private var items: List<ResultItem>) :
         holder.nameTextView.text = item.name
         holder.dateTextView.text = item.date
         holder.examinationTypeTextView.text = item.examinationType
-        holder.downloadTextView.text = "Download"
-        holder.pdfImageView.setImageResource(R.drawable.pdf)
+
+        if (item.status) {
+            holder.downloadTextView.text = "Download"
+            holder.pdfImageView.setImageResource(R.drawable.pdf_status_red)
+        } else {
+            holder.downloadTextView.text = "Proses"
+            holder.pdfImageView.setImageResource(R.drawable.pdf_status_gray)
+        }
     }
+
 
     fun updateData(newItems: List<ResultItem>) {
         items = newItems

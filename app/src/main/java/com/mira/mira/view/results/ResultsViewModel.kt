@@ -14,10 +14,21 @@ class ResultsViewModel : ViewModel() {
             ResultItem(
                 "Rahmad Era Sugiarto",
                 "01-01-1990",
-                "Pemeriksaan Extrimitas Atas Pergelangan Tangan"
+                "Pemeriksaan Extrimitas Atas Pergelangan Tangan",
+                true
             ),
-            ResultItem("John Doe", "12-12-1985", "Pemeriksaan Kepala"),
-            ResultItem("Jane Smith", "05-05-1992", "Pemeriksaan Jantung")
+            ResultItem(
+                "John Doe",
+                "12-12-1985",
+                "Pemeriksaan Kepala",
+                false
+            ),
+            ResultItem(
+                "Jane Smith",
+                "05-05-1992",
+                "Pemeriksaan Jantung",
+                true
+            )
         )
     }
 }

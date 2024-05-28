@@ -24,9 +24,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Setup tombol logout
         binding.logoutButton.setOnClickListener {
-            // Lakukan logout ketika tombol logout ditekan
             (requireActivity() as? MainActivity)?.logout()
         }
     }
