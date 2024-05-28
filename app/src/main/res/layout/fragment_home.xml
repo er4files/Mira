@@ -163,7 +163,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView10">
 
                 <LinearLayout
-                    android:id="@+id/feature_reservation"
+                    android:id="@+id/feature_formreservation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
@@ -183,7 +183,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:text="@string/book_a_reservation"
+                        android:text="@string/form_a_reservation"
                         android:textAlignment="center"
                         android:textColor="@color/gray"
                         android:textSize="8sp" />
@@ -220,7 +220,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/feature_result"
+                    android:id="@+id/feature_chatbot"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
@@ -240,7 +240,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:text="@string/check_up_result"
+                        android:text="@string/chat_bot"
                         android:textAlignment="center"
                         android:textColor="@color/gray"
                         android:textSize="8sp" />
