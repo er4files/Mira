@@ -8,7 +8,7 @@
     android:pointerIcon="none"
     tools:context=".view.profile.ProfileFragment">
 
-    <!--Top Header Layout-->
+    <!-- Top Header Layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topbar_profile"
         android:layout_width="match_parent"
@@ -33,6 +33,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- Profile Info Card -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="0dp"
@@ -165,6 +166,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
+    <!-- Navigation Buttons -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_navigate_history"
         android:layout_width="0dp"
@@ -224,7 +226,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_navigate_help_center" />
 
     <Button
-        android:id="@+id/btn_logout"
+        android:id="@+id/logoutButton"
         style="@style/Widget.Material3.Button.TextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -238,6 +240,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_navigate_settings" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
