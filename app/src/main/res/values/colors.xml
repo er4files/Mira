@@ -13,5 +13,6 @@
     <color name="read_background">#E3E0E0</color>
     <color name="unread_background">#FFFFFF</color>
 
-
+    <color name="background_light">#f8f8f8</color>
+    <color name="success_light">#76dd66</color>
 </resources>

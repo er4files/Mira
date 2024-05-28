@@ -23,4 +23,8 @@
         <item name="android:textAlignment">textStart</item>
         <item name="android:textColor">@color/black</item>
     </style>
+    
+    <style name="button_success">
+        <item name="backgroundTint">@color/success_light</item>
+    </style>
 </resources>

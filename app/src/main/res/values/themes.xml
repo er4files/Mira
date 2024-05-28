@@ -13,5 +13,9 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
 
+        <item name="background">@color/background_light</item>
+        <item name="backgroundColor">@color/background_light</item>
+
     </style>
+
 </resources>
