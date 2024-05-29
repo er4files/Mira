@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mira.mira.R
 import com.mira.mira.data.model.Article
 import com.mira.mira.view.adapter.ArticleAdapter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class ArticleActivity : AppCompatActivity() {
     private lateinit var articleViewModel: ArticleViewModel
@@ -32,24 +35,23 @@ class ArticleActivity : AppCompatActivity() {
 
         articleViewModel = ViewModelProvider(this).get(ArticleViewModel::class.java)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.rc_listnews)
-        val articleAdapter = ArticleAdapter(emptyList())
-        recyclerView.adapter = articleAdapter
+        val recyclerViewNews = findViewById<RecyclerView>(R.id.rc_listnews)
+        val articleAdapterNews = ArticleAdapter(emptyList())
+        recyclerViewNews.adapter = articleAdapterNews
 
+        val recyclerViewTips = findViewById<RecyclerView>(R.id.rc_listtips)
+        val articleAdapterTips = ArticleAdapter(emptyList())
+        recyclerViewTips.adapter = articleAdapterTips
+
+        // Observe articles LiveData and update UI
         articleViewModel.getArticles().observe(this, Observer { articles ->
-            articleAdapter.updateArticles(articles)
+            articleAdapterNews.updateArticles(articles)
         })
 
-        val tipsRecyclerView = findViewById<RecyclerView>(R.id.rc_listtips)
-        val tipsAdapter = ArticleAdapter(getTips())
-        tipsRecyclerView.adapter = tipsAdapter
-    }
-
-    private fun getTips(): List<Article> {
-        return listOf(
-            Article("Tips Kesehatan 1", "Deskripsi 1", "", "",""),
-            Article("Tips Kesehatan 2", "Deskripsi 2", "", "",""),
-            Article("Tips Kesehatan 3", "Deskripsi 3", "", "","")
-        )
+        // Fetch tips asynchronously and update UI
+        GlobalScope.launch(Dispatchers.Main) {
+            val tips = articleViewModel.getTips()
+            articleAdapterTips.updateArticles(tips)
+        }
     }
 }
