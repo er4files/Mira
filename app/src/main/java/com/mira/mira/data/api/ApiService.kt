@@ -6,4 +6,7 @@ import retrofit2.http.GET
 interface ApiService {
     @GET("/merdeka/sehat/")
     suspend fun getArticles(): ApiResponse
+
+    @GET("tempo/cantik/")
+    suspend fun getTips(): ApiResponse
 }

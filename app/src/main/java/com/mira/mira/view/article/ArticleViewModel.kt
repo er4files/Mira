@@ -16,4 +16,13 @@ class ArticleViewModel : ViewModel() {
             emit(emptyList<Article>())
         }
     }
+
+    suspend fun getTips(): List<Article> {
+        val response = ApiConfig.apiService.getTips()
+        return if (response.success) {
+            response.data.posts
+        } else {
+            emptyList()
+        }
+    }
 }
