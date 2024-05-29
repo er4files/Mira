@@ -40,9 +40,9 @@
     <string name="reservation_phone_number">Phone Number</string>
     <string name="reservation_button_reserve">Reserve</string>
 
-        <string name="status_completed">Selesai</string>
-        <string name="status_upcoming">Akan Datang</string>
-
+    <string name="status_completed">Selesai</string>
+    <string name="status_upcoming">Akan Datang</string>
+    <string name="doctor_consultation">Doctor Consultation</string>
 
 
 </resources>
