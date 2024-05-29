@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mira.mira.R
 import com.mira.mira.data.model.Article
 
+
 class ArticleAdapter(private val articleList: List<Article>) : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {

@@ -14,8 +14,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mira.mira.R
 import com.mira.mira.data.model.Article
 import com.mira.mira.view.adapter.ArticleAdapter
+import com.mira.mira.view.article.ArticleActivity
 import com.mira.mira.view.history.HistoryActivity
 import com.mira.mira.view.notification.NotificationActivity
+import com.mira.mira.view.article.ArticleViewModel
+import com.mira.mira.view.consultation.ConsultationActivity
 
 class HomeFragment : Fragment() {
 
@@ -32,7 +35,7 @@ class HomeFragment : Fragment() {
         val adapter = ArticleAdapter(getArticles())
         recyclerView.adapter = adapter
 
-        // Notif
+        // Notification
         val notificationIcon: RelativeLayout = view.findViewById(R.id.notification_icon)
         notificationIcon.setOnClickListener {
             val intent = Intent(activity, NotificationActivity::class.java)
@@ -46,11 +49,25 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
+        // Consultation Doctor
+        val featureConsultation: LinearLayout = view.findViewById(R.id.feature_doctorconsultation)
+        featureConsultation.setOnClickListener {
+            val intent = Intent(activity, ConsultationActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Article Health
+        val featureArticle: LinearLayout = view.findViewById(R.id.feature_article)
+        featureArticle.setOnClickListener {
+            val intent = Intent(activity, ArticleActivity::class.java)
+            startActivity(intent)
+        }
+
         return view
     }
 
     private fun getArticles(): List<Article> {
-        val homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        return homeViewModel.getDummyArticles()
+        val articleViewModel = ViewModelProvider(this).get(ArticleViewModel::class.java)
+        return articleViewModel.getDummyArticles()
     }
 }
