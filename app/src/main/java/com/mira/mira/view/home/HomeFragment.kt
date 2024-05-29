@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,18 +24,32 @@ import com.mira.mira.view.consultation.ConsultationActivity
 class HomeFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
+    private lateinit var articleAdapter: ArticleAdapter
+    private lateinit var articleViewModel: ArticleViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        recyclerView = view.findViewById(R.id.rc_listarticle)
-
+        // Initialize RecyclerView
+        recyclerView = view.findViewById(R.id.rc_listnews)
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.layoutManager = layoutManager
+        articleAdapter = ArticleAdapter(emptyList())
+        recyclerView.adapter = articleAdapter
 
-        val adapter = ArticleAdapter(getArticles())
-        recyclerView.adapter = adapter
+        // Initialize ViewModel
+        articleViewModel = ViewModelProvider(this).get(ArticleViewModel::class.java)
+        articleViewModel.getArticles().observe(viewLifecycleOwner, Observer { articles ->
+            // limit 3 article
+            articleAdapter.updateArticles(articles.take(3))
+        })
 
+        setUpFeatureClickListeners(view)
+
+        return view
+    }
+
+    private fun setUpFeatureClickListeners(view: View) {
         // Notification
         val notificationIcon: RelativeLayout = view.findViewById(R.id.notification_icon)
         notificationIcon.setOnClickListener {
@@ -62,12 +77,5 @@ class HomeFragment : Fragment() {
             val intent = Intent(activity, ArticleActivity::class.java)
             startActivity(intent)
         }
-
-        return view
-    }
-
-    private fun getArticles(): List<Article> {
-        val articleViewModel = ViewModelProvider(this).get(ArticleViewModel::class.java)
-        return articleViewModel.getDummyArticles()
     }
 }
