@@ -81,11 +81,13 @@ dependencies {
 
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation ("com.google.firebase:firebase-analytics-ktx")
-    implementation ("com.google.firebase:firebase-auth-ktx:21.0.3")
-    implementation ("com.google.firebase:firebase-storage-ktx:20.0.1")
+    implementation ("com.google.firebase:firebase-auth-ktx:23.0.0")
+    implementation ("com.google.firebase:firebase-storage-ktx:21.0.0")
 
     //firestore
-    implementation ("com.google.firebase:firebase-firestore:25.0.0'")
+    implementation ("com.google.firebase:firebase-firestore:25.0.0")
+    implementation ("com.google.firebase:firebase-auth:23.0.0")
+
 
 
 }
