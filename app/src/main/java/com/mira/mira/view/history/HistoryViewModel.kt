@@ -1,8 +1,10 @@
 package com.mira.mira.view.history
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.firestore.FirebaseFirestore
 import com.mira.mira.data.model.HistoryItem
 
 class HistoryViewModel : ViewModel() {
@@ -11,17 +13,29 @@ class HistoryViewModel : ViewModel() {
     val historyList: LiveData<List<HistoryItem>> = _historyList
 
     init {
-        val initialData = listOf(
-            HistoryItem("Rahmad Era Sugiarto", "01 Jan 1990", "07:00-10:00", "Pemeriksaan Ekstrimitas Atas Pergelangan Tangan", false),
-            HistoryItem("John Doe", "02 Feb 1992", "09:00-12:00", "Pemeriksaan Mata", true)
-
-        )
-        _historyList.value = initialData
+        fetchHistoryFromFirestore()
     }
 
-    fun addHistoryItem(historyItem: HistoryItem) {
-        val currentList = _historyList.value.orEmpty().toMutableList()
-        currentList.add(historyItem)
-        _historyList.value = currentList
+    private fun fetchHistoryFromFirestore() {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("pasien")
+            .get()
+            .addOnSuccessListener { result ->
+                val historyList = mutableListOf<HistoryItem>()
+                for (document in result) {
+                    val name = document.getString("nama_pasien") ?: ""
+                    val date = document.getString("tanggal_kunjungan") ?: ""
+                    val time = document.getString("waktu_kunjungan") ?: ""
+                    val exam = document.getString("jenis_periksa") ?: ""
+                    val isCompleted = document.getBoolean("status_kunjungan") ?: false
+                    val historyItem = HistoryItem(name, date, time, exam, isCompleted)
+                    historyList.add(historyItem)
+                }
+                _historyList.value = historyList
+            }
+            .addOnFailureListener { exception ->
+                _historyList.value = emptyList()
+                Log.e("ResultsViewModel", "Error fetching results: ${exception.message}")
+            }
     }
 }

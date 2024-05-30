@@ -13,9 +13,9 @@ class ResultsAdapter(private var items: List<ResultItem>) :
     RecyclerView.Adapter<ResultsAdapter.ResultViewHolder>() {
 
     class ResultViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val nameTextView: TextView = view.findViewById(R.id.jtv_namepasien)
-        val dateTextView: TextView = view.findViewById(R.id.tv_datepasien)
-        val examinationTypeTextView: TextView = view.findViewById(R.id.tv_jenisperiksa)
+        val nameTextView: TextView = view.findViewById(R.id.tv_nama_pasien)
+        val dateTextView: TextView = view.findViewById(R.id.tv_date_reservation)
+        val examinationTypeTextView: TextView = view.findViewById(R.id.tv_jenis_periksa)
         val downloadTextView: TextView = view.findViewById(R.id.tv_download)
         val pdfImageView: ImageView = view.findViewById(R.id.iv_pdf)
     }

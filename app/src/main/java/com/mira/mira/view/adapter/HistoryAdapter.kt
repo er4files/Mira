@@ -40,10 +40,10 @@ class HistoryAdapter(private val historyList: List<HistoryItem>) : RecyclerView.
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nameTextView: TextView = itemView.findViewById(R.id.jtv_namepasien)
-        val dateTextView: TextView = itemView.findViewById(R.id.tv_datepasien)
-        val timeTextView: TextView = itemView.findViewById(R.id.tv_timepasien)
-        val examTextView: TextView = itemView.findViewById(R.id.tv_jenisperiksa)
-        val statusTextView: TextView = itemView.findViewById(R.id.tv_statushistory)
+        val nameTextView: TextView = itemView.findViewById(R.id.tv_nama_pasien)
+        val dateTextView: TextView = itemView.findViewById(R.id.tv_tanggal_kunjungan)
+        val timeTextView: TextView = itemView.findViewById(R.id.tv_waktu_kunjungan)
+        val examTextView: TextView = itemView.findViewById(R.id.tv_jenis_periksa)
+        val statusTextView: TextView = itemView.findViewById(R.id.tv_status_kunjungan)
     }
 }
