@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.mira.mira.view.main.MainActivity
 import com.mira.mira.databinding.FragmentProfileBinding
+import com.mira.mira.view.main.MainActivity
 
 class ProfileFragment : Fragment() {
 
