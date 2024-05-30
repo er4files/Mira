@@ -5,6 +5,12 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="bottomRoundedShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeBottomLeft">16dp</item>
+        <item name="cornerSizeBottomRight">16dp</item>
+    </style>
+
     <style name="profileHeaderText">
         <item name="android:textColor">@color/black</item>
     </style>
