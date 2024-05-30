@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.mira.mira" />
+                  <option name="mobileSdkAppId" value="1:410554412023:android:8d3324a100805c953b1cf2" />
+                  <option name="projectId" value="mira-team" />
+                  <option name="projectNumber" value="410554412023" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
