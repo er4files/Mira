@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "410554412023",
+    "project_id": "mira-team",
+    "storage_bucket": "mira-team.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:410554412023:android:8d3324a100805c953b1cf2",
+        "android_client_info": {
+          "package_name": "com.mira.mira"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATV8vbiRsN2SqsarhyNJIjlTFI8uJa0zM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

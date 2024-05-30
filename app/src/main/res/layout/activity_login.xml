@@ -44,8 +44,6 @@
             app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Title TextView -->
-
     <!-- Message TextView -->
     <TextView
         android:id="@+id/messageTextView"
@@ -105,7 +103,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-
         android:text="Password"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
@@ -149,7 +146,6 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout"
-
         tools:alpha="100" />
 
     <!-- Login Button -->
@@ -165,8 +161,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/forgotPasswordTextView"
         tools:alpha="100" />
-
-    <!-- Horizontal LinearLayout for "Belum punya akun?" and "Daftar Sekarang" -->
     <LinearLayout
         android:id="@+id/noAccountLayout"
         android:layout_width="wrap_content"

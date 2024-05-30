@@ -1,5 +1,6 @@
 package com.mira.mira.view.home
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,25 +8,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mira.mira.R
-import com.mira.mira.data.model.Article
 import com.mira.mira.view.adapter.ArticleAdapter
 import com.mira.mira.view.article.ArticleActivity
+import com.mira.mira.view.consultation.ConsultationActivity
 import com.mira.mira.view.history.HistoryActivity
 import com.mira.mira.view.notification.NotificationActivity
 import com.mira.mira.view.article.ArticleViewModel
-import com.mira.mira.view.consultation.ConsultationActivity
 
 class HomeFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var articleAdapter: ArticleAdapter
     private lateinit var articleViewModel: ArticleViewModel
+    private lateinit var tvUser: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
@@ -43,6 +45,15 @@ class HomeFragment : Fragment() {
             // limit 3 article
             articleAdapter.updateArticles(articles.take(3))
         })
+
+        // Initialize TextView
+        tvUser = view.findViewById(R.id.tv_user)
+
+        // Retrieve username from SharedPreferences
+        val sharedPreferences = requireActivity().getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val username = sharedPreferences.getString("username", "User") // Jika tidak ditemukan, gunakan "User" sebagai default
+        // Set username to TextView
+        tvUser.text = username
 
         setUpFeatureClickListeners(view)
 
