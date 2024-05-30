@@ -1,6 +1,5 @@
 package com.mira.mira.view.home
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +13,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.mira.mira.R
 import com.mira.mira.view.adapter.ArticleAdapter
 import com.mira.mira.view.article.ArticleActivity
@@ -28,6 +29,7 @@ class HomeFragment : Fragment() {
     private lateinit var articleAdapter: ArticleAdapter
     private lateinit var articleViewModel: ArticleViewModel
     private lateinit var tvUser: TextView
+    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
@@ -46,14 +48,29 @@ class HomeFragment : Fragment() {
             articleAdapter.updateArticles(articles.take(3))
         })
 
+        // Initialize Firestore
+        firestore = FirebaseFirestore.getInstance()
+
         // Initialize TextView
         tvUser = view.findViewById(R.id.tv_user)
 
-        // Retrieve username from SharedPreferences
-        val sharedPreferences = requireActivity().getSharedPreferences("user_session", Context.MODE_PRIVATE)
-        val username = sharedPreferences.getString("username", "User") // Jika tidak ditemukan, gunakan "User" sebagai default
-        // Set username to TextView
-        tvUser.text = username
+        // Retrieve username from Firestore
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        currentUser?.let {
+            firestore.collection("users").document(it.uid).get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        val username = document.getString("username") ?: "User"
+                        // Set username to TextView
+                        tvUser.text = username
+                    } else {
+                        tvUser.text = "User"
+                    }
+                }
+                .addOnFailureListener { e ->
+                    tvUser.text = "User"
+                }
+        }
 
         setUpFeatureClickListeners(view)
 

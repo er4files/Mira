@@ -25,7 +25,7 @@
     <string name="profile_others">Others</string>
     <string name="profile_help_center">Help Center</string>
     <string name="profile_appointment_history">Appointment History</string>
-    <string name="progile_settings">Settings</string>
+    <string name="profile_settings">Settings</string>
     <string name="profile_logout">LOG OUT</string>
     <string name="full_name">Full Name</string>
     <string name="reservation_full_name">Enter your full name</string>
