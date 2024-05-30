@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Mira"
         tools:targetApi="31">
         <activity
+            android:name=".view.formReservation.FormReservationActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.consultation.ConsultationActivity"
             android:exported="false" />
         <activity

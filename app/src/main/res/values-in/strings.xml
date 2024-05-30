@@ -10,10 +10,10 @@
     <string name="user">Rahmad Era Sugiarto</string>
     <string name="hospital">RSUD dr. Soebandi</string>
     <string name="features">Features</string>
-    <string name="book_a_reservation">Book a Reservation</string>
+    <string name="form_a_reservation">Book a Reservation</string>
     <string name="reservation_history">Reservation History</string>
-    <string name="check_up_result">Check Up Result</string>
-    <string name="health_article">Health Article</string>
+    <string name="chat_bot">Check Up Result</string>
+    <string name="health_article">Asisten Mira</string>
     <string name="result">Result</string>
     <string name="profile">Profile</string>
     <string name="reservation">Reservation</string>
@@ -26,9 +26,10 @@
     <string name="profile_others">Lainnya</string>
     <string name="profile_help_center">Pusat Bantian</string>
     <string name="profile_appointment_history">Riwayat Janji</string>
-    <string name="progile_settings">Pengaturan</string>
+    <string name="profile_settings">Pengaturan</string>
     <string name="profile_logout">KELUAR</string>
-    <string name="full_name">Nama Lengkal</string>
+    <string name="full_name">Nama Lengkap</string>
+    <string name="reservation_full_name">Masukkan nama lengkap</string>
     <string name="reservation_birth">Tanggal Lahir</string>
     <string name="reservation_gender">Jenis Kelamin</string>
     <string name="reservation_rb_male">Laki-laki</string>
@@ -39,4 +40,10 @@
     <string name="email">Email</string>
     <string name="reservation_phone_number">No. Ponsel</string>
     <string name="reservation_button_reserve">Pesan</string>
+    <string name="reservation_date">Reservation Date</string>
+    <string name="reservation_select_date">Select Date</string>
+
+    <string name="status_completed">Selesai</string>
+    <string name="status_upcoming">Akan Datang</string>
+    <string name="doctor_consultation">Konsultasi Dokter</string>
 </resources>
