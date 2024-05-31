@@ -22,6 +22,7 @@ import com.mira.mira.view.consultation.ConsultationActivity
 import com.mira.mira.view.history.HistoryActivity
 import com.mira.mira.view.notification.NotificationActivity
 import com.mira.mira.view.article.ArticleViewModel
+import com.mira.mira.view.formReservation.FormReservationActivity
 
 class HomeFragment : Fragment() {
 
@@ -84,7 +85,12 @@ class HomeFragment : Fragment() {
             val intent = Intent(activity, NotificationActivity::class.java)
             startActivity(intent)
         }
-
+        // Form Reservation
+        val featureFormReservation: LinearLayout = view.findViewById(R.id.feature_formreservation)
+        featureFormReservation.setOnClickListener {
+            val intent = Intent(activity, FormReservationActivity::class.java)
+            startActivity(intent)
+        }
         // History
         val featureHistory: LinearLayout = view.findViewById(R.id.feature_history)
         featureHistory.setOnClickListener {

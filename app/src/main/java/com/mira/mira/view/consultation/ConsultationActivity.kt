@@ -30,9 +30,9 @@ class ConsultationActivity : AppCompatActivity() {
         }
 
         val doctorList = listOf(
-            Doctor("Dr. Agus Santoso", "Cardiologist", "Jl. Merdeka No. 10, Jakarta", 4.5f),
-            Doctor("Dr. Siti Aminah", "Neurologist", "Jl. Pahlawan No. 20, Bandung", 4.0f),
-            Doctor("Dr. Budi Prasetyo", "Pediatrician", "Jl. Kemerdekaan No. 30, Surabaya", 4.7f)
+            Doctor("Dr. Agus Santoso", "Radiologist", "Jl. Merdeka No. 10, Jakarta", 4.5f, R.drawable.dr_agus),
+            Doctor("Dr. Siti Aminah", "Interventional Radiologist", "Jl. Pahlawan No. 20, Bandung", 3.0f, R.drawable.dr_siti),
+            Doctor("Dr. Budi Prasetyo", "Medical Imaging Specialist", "Jl. Kemerdekaan No. 30, Surabaya", 4.7f, R.drawable.dr_budi)
         )
 
         val recyclerView: RecyclerView = findViewById(R.id.rc_listconsultation)

@@ -62,7 +62,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:background="@drawable/profil_picture" />
 
             <TextView
                 android:id="@+id/tv_user"
@@ -167,7 +167,7 @@
     <Button
         android:id="@+id/logoutButton"
         style="@style/Widget.Material3.Button.TextButton"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"

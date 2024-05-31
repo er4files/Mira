@@ -28,6 +28,7 @@ class DoctorAdapter(private val doctors: List<Doctor>) : RecyclerView.Adapter<Do
     }
 
     class DoctorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val doctorImage: ImageView = itemView.findViewById(R.id.iv_profiledoctor)
         private val doctorName: TextView = itemView.findViewById(R.id.doctor_name_item)
         private val doctorSpecialization: TextView = itemView.findViewById(R.id.doctor_specialist_item)
         private val doctorRating: RatingBar = itemView.findViewById(R.id.doctor_rating_item)
@@ -35,6 +36,7 @@ class DoctorAdapter(private val doctors: List<Doctor>) : RecyclerView.Adapter<Do
         private val callButton: Button = itemView.findViewById(R.id.call_button)
 
         fun bind(doctor: Doctor) {
+            doctorImage.setImageResource(doctor.imageResId)
             doctorName.text = doctor.name
             doctorSpecialization.text = doctor.specialization
             doctorRating.rating = doctor.rating
