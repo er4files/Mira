@@ -46,5 +46,7 @@
     <string name="reservation_date">Reservation Date</string>
     <string name="reservation_select_date">Select Date</string>
 
+    <string name="book_an_appointment">Book an Appointment</string>
+    <string name="form_reservation">Form Reservasi</string>
 
 </resources>
