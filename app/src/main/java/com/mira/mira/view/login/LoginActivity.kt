@@ -39,22 +39,30 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.loginButton.setOnClickListener {
-            val email = binding.emailEditText.text.toString()
-            val password = binding.passwordEditText.text.toString()
+            if (binding.emailEditText.text.toString()
+                    .isNotEmpty() && binding.passwordEditText.text.toString().isNotEmpty()
+            ) {
+                val email = binding.emailEditText.text.toString()
+                val password = binding.passwordEditText.text.toString()
 
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        // Login successful
-                        sharedPreferences.edit().putBoolean("is_logged_in", true).apply()
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        // Login failed
-                        Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            // Login successful
+                            sharedPreferences.edit().putBoolean("is_logged_in", true).apply()
+                            val intent = Intent(this, MainActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            // Login failed
+                            Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT)
+                                .show()
+                        }
                     }
-                }
+
+            }
+
         }
     }
 }

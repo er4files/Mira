@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.mira.mira.R
 import com.mira.mira.databinding.FragmentReservationBinding
+import com.mira.mira.view.formReservation.FormReservationActivity
 import com.mira.mira.view.history.HistoryActivity
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -54,6 +55,17 @@ class ReservationFragment : Fragment() {
                     this.binding.dateTextInputEdit.setText(str)
                 }, year, month, day)
             datePicker.show()
+        }
+
+        binding.reservationButton.setOnClickListener {
+
+            if(binding.dateTextInputEdit.text.toString().isNotEmpty()){
+                val intent = Intent(activity, FormReservationActivity::class.java)
+                intent.putExtra("reservation_date", binding.dateTextInputEdit.text.toString())
+                startActivity(intent)
+            }else{
+
+            }
         }
 
         return view
