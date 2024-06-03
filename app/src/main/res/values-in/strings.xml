@@ -46,5 +46,4 @@
     <string name="status_completed">Selesai</string>
     <string name="status_upcoming">Akan Datang</string>
     <string name="doctor_consultation">Konsultasi Dokter</string>
-    <string name="book_an_appoinment">Book an Appoinment</string>
 </resources>

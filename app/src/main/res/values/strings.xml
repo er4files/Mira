@@ -45,7 +45,6 @@
     <string name="doctor_consultation">Doctor Consultation</string>
     <string name="reservation_date">Reservation Date</string>
     <string name="reservation_select_date">Select Date</string>
-    <string name="book_an_appoinment">Book an Appoinment</string>
 
 
 </resources>
