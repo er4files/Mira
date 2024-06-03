@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.mira.mira.R
 import com.mira.mira.databinding.FragmentReservationBinding
-import com.mira.mira.view.formReservation.FormReservationActivity
 import com.mira.mira.view.history.HistoryActivity
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -39,31 +38,22 @@ class ReservationFragment : Fragment() {
             startActivity(intent)
         }
 
-        binding.dateTextInputEdit.setOnClickListener {
+        binding.dateTextInputEdit.setOnClickListener{
             val today = Calendar.getInstance()
             val year = today.get(Calendar.YEAR)
             val month = today.get(Calendar.MONTH)
             val day = today.get(Calendar.DAY_OF_MONTH)
             val context = requireContext()
             val datePicker = DatePickerDialog(context,
-                DatePickerDialog.OnDateSetListener { datePicker, selYear, selMonth, selDay ->
+                DatePickerDialog.OnDateSetListener{ datePicker, selYear, selMonth, selDay ->
                     val calendar = Calendar.getInstance()
                     calendar.set(selYear, selMonth, selDay)
 
                     var dateFormat = SimpleDateFormat("dd-MM-yyyy")
                     var str = dateFormat.format(calendar.time)
                     this.binding.dateTextInputEdit.setText(str)
-                }, year, month, day
-            )
+                }, year, month, day)
             datePicker.show()
-        }
-
-        binding.reservationButton.setOnClickListener {
-            if(!binding.dateTextInputEdit.text.toString().isEmpty()){
-                val intent = Intent(activity,FormReservationActivity::class.java)
-                intent.putExtra(FormReservationActivity.RESERVATION_DATE, binding.dateTextInputEdit.text.toString())
-                startActivity(intent)
-            }
         }
 
         return view
