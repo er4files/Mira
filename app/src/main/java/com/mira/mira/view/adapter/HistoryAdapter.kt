@@ -1,14 +1,12 @@
 package com.mira.mira.view.adapter
-import android.graphics.Color
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.mira.mira.R
 import com.mira.mira.data.model.HistoryItem
-
 
 class HistoryAdapter(private val historyList: List<HistoryItem>) : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
@@ -19,21 +17,26 @@ class HistoryAdapter(private val historyList: List<HistoryItem>) : RecyclerView.
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val historyItem = historyList[position]
-        // Set data to views in item_history layout
         holder.nameTextView.text = historyItem.name
         holder.dateTextView.text = historyItem.date
         holder.timeTextView.text = historyItem.time
         holder.examTextView.text = historyItem.exam
 
-        if (historyItem.isCompleted) {
-            holder.statusTextView.setBackgroundResource(R.drawable.background_status_gray)
-            holder.statusTextView.text = "Selesai"
-        } else {
-            holder.statusTextView.setBackgroundResource(R.drawable.background_status_green)
-            holder.statusTextView.text = "Akan datang"
+        when (historyItem.status) {
+            "menunggu konfirmasi" -> {
+                holder.statusTextView.setBackgroundResource(R.drawable.background_status_yellow)
+                holder.statusTextView.text = "Menunggu Konfirmasi"
+            }
+            "konfirmasi" -> {
+                holder.statusTextView.setBackgroundResource(R.drawable.background_status_green)
+                holder.statusTextView.text = "Konfirmasi"
+            }
+            "selesai" -> {
+                holder.statusTextView.setBackgroundResource(R.drawable.background_status_gray)
+                holder.statusTextView.text = "Selesai"
+            }
         }
     }
-
 
     override fun getItemCount(): Int {
         return historyList.size

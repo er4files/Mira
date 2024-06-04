@@ -5,5 +5,5 @@ data class HistoryItem(
     val date: String,
     val time: String,
     val exam: String,
-    val isCompleted: Boolean
+    val status: String
 )

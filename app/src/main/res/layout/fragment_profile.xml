@@ -58,11 +58,11 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:scaleType="centerCrop"
+                android:background="@drawable/profil_picture"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-                android:background="@drawable/profil_picture" />
+                app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
 
             <TextView
                 android:id="@+id/tv_user"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#7EE483"/> <!-- Warna default untuk status "Akan Datang" -->
+    <solid android:color="#E8D957"/> <!-- Warna default untuk status "Akan Datang" -->
     <corners android:radius="10dp"/>
 </shape>
