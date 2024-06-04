@@ -53,5 +53,6 @@
     <string name="spesialis">Cardiologist</string>
     <string name="chat">Chat</string>
     <string name="call">Call</string>
+    <string name="help_button_description">help</string>
 
 </resources>
