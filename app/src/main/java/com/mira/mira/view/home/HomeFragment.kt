@@ -1,18 +1,17 @@
 package com.mira.mira.view.home
-
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
+import androidx.appcompat.widget.TooltipCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.mira.mira.R
@@ -74,6 +73,11 @@ class HomeFragment : Fragment() {
         }
 
         setUpFeatureClickListeners(view)
+
+        //floatingactionbutton
+        val fab: FloatingActionButton = view.findViewById(R.id.elevated_button_id)
+        TooltipCompat.setTooltipText(fab, "Ada yang bisa saya bantu?")
+
 
         return view
     }
