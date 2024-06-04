@@ -48,5 +48,10 @@
 
     <string name="book_an_appointment">Book an Appointment</string>
     <string name="form_reservation">Form Reservasi</string>
+    <string name="health_news">Health News</string>
+    <string name="doctor">Dr. John Smith</string>
+    <string name="spesialis">Cardiologist</string>
+    <string name="chat">Chat</string>
+    <string name="call">Call</string>
 
 </resources>

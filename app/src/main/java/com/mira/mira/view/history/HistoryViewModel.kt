@@ -27,15 +27,15 @@ class HistoryViewModel : ViewModel() {
                     val date = document.getString("tanggal_kunjungan") ?: ""
                     val time = document.getString("waktu_kunjungan") ?: ""
                     val exam = document.getString("jenis_periksa") ?: ""
-                    val isCompleted = document.getBoolean("status_kunjungan") ?: false
-                    val historyItem = HistoryItem(name, date, time, exam, isCompleted)
+                    val status = document.getString("status_kunjungan") ?: "menunggu konfirmasi"
+                    val historyItem = HistoryItem(name, date, time, exam, status)
                     historyList.add(historyItem)
                 }
                 _historyList.value = historyList
             }
             .addOnFailureListener { exception ->
                 _historyList.value = emptyList()
-                Log.e("ResultsViewModel", "Error fetching results: ${exception.message}")
+                Log.e("HistoryViewModel", "Error fetching results: ${exception.message}")
             }
     }
 }
