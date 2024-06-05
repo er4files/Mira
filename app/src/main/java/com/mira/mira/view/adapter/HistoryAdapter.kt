@@ -17,25 +17,9 @@ class HistoryAdapter(private val historyList: List<HistoryItem>) : RecyclerView.
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val historyItem = historyList[position]
-        holder.nameTextView.text = historyItem.name
-        holder.dateTextView.text = historyItem.date
-        holder.timeTextView.text = historyItem.time
-        holder.examTextView.text = historyItem.exam
-
-        when (historyItem.status) {
-            "menunggu konfirmasi" -> {
-                holder.statusTextView.setBackgroundResource(R.drawable.background_status_yellow)
-                holder.statusTextView.text = "Menunggu Konfirmasi"
-            }
-            "konfirmasi" -> {
-                holder.statusTextView.setBackgroundResource(R.drawable.background_status_green)
-                holder.statusTextView.text = "Konfirmasi"
-            }
-            "selesai" -> {
-                holder.statusTextView.setBackgroundResource(R.drawable.background_status_gray)
-                holder.statusTextView.text = "Selesai"
-            }
-        }
+        holder.nameTextView.text = historyItem.nama
+        holder.dateTimeTextView.text = historyItem.waktu_pemeriksaan
+        holder.statusTextView.text = historyItem.status
     }
 
     override fun getItemCount(): Int {
@@ -44,9 +28,7 @@ class HistoryAdapter(private val historyList: List<HistoryItem>) : RecyclerView.
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.tv_nama_pasien)
-        val dateTextView: TextView = itemView.findViewById(R.id.tv_tanggal_kunjungan)
-        val timeTextView: TextView = itemView.findViewById(R.id.tv_waktu_kunjungan)
-        val examTextView: TextView = itemView.findViewById(R.id.tv_jenis_periksa)
+        val dateTimeTextView: TextView = itemView.findViewById(R.id.tv_waktu_pemeriksaan)
         val statusTextView: TextView = itemView.findViewById(R.id.tv_status_kunjungan)
     }
 }
