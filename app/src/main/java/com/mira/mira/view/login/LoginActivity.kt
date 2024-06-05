@@ -13,6 +13,7 @@ import com.mira.mira.data.api.LoginRequest
 import com.mira.mira.data.api.LoginResponse
 import com.mira.mira.databinding.ActivityLoginBinding
 import com.mira.mira.view.history.HistoryActivity
+import com.mira.mira.view.main.MainActivity
 import com.mira.mira.view.signup.SignupActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -65,10 +66,12 @@ class LoginActivity : AppCompatActivity() {
                             val token = response.body()?.idToken ?: ""
                             sharedPreferences.edit().apply {
                                 putString("auth_token", token)
+                                putString("localId", response.body()?.localId ?: "")
                                 apply()
                             }
 
-                            val intent = Intent(this@LoginActivity, HistoryActivity::class.java)
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                             startActivity(intent)
                             finish()
                         } else {

@@ -50,7 +50,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun isUserLoggedIn(): Boolean {
-        return sharedPreferences.getBoolean("is_logged_in", false)
+        val tempId = sharedPreferences.getString("localId", "")
+        if(tempId.toString().isNotBlank()){
+            return true
+        }
+        return false
     }
 
     private fun navigateToWelcome() {
