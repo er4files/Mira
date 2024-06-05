@@ -36,7 +36,8 @@
                 android:layout_gravity="center_vertical"
                 android:text="@string/hi"
                 android:textColor="@color/gray"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_marginEnd="4dp"/>
 
             <TextView
                 android:id="@+id/tv_user"
@@ -311,13 +312,11 @@
         android:id="@+id/elevated_button_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_gravity="bottom|end"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/circular_button"
-        android:contentDescription="@string/help_button_description"
+        android:layout_marginBottom="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rc_listnews"
-        app:rippleColor="#FF9800"
         app:srcCompat="@drawable/ic_chat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

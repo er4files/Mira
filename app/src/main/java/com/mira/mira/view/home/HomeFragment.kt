@@ -1,5 +1,6 @@
 package com.mira.mira.view.home
 
+import android.app.AlertDialog
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
@@ -108,10 +109,6 @@ class HomeFragment : Fragment() {
 
         setUpFeatureClickListeners(view)
 
-        // Floating action button
-        val fab: FloatingActionButton = view.findViewById(R.id.elevated_button_id)
-        TooltipCompat.setTooltipText(fab, "Ada yang bisa saya bantu?")
-
         return view
     }
 
@@ -148,7 +145,11 @@ class HomeFragment : Fragment() {
             val intent = Intent(activity, ArticleActivity::class.java)
             startActivity(intent)
         }
+
+
     }
+
+
 
     private fun retrieveTokenFromSharedPreferences(): String {
         // Retrieve token from SharedPreferences or other source
