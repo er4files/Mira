@@ -39,7 +39,7 @@ class HistoryViewModel(private val token: String) : ViewModel() {
 
         val service = retrofit.create(MiraApiService::class.java)
 
-        service.getPatients("Bearer $token").enqueue(object : Callback<List<HistoryItem>> {
+        service.getHistoryPatients("Bearer $token").enqueue(object : Callback<List<HistoryItem>> {
             override fun onResponse(call: Call<List<HistoryItem>>, response: Response<List<HistoryItem>>) {
                 if (response.isSuccessful) {
                     _historyList.value = response.body()
