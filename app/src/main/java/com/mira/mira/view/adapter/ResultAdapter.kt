@@ -27,11 +27,11 @@ class ResultsAdapter(private var items: List<ResultItem>) :
 
     override fun onBindViewHolder(holder: ResultViewHolder, position: Int) {
         val item = items[position]
-        holder.nameTextView.text = item.name
-        holder.dateTextView.text = item.date
-        holder.examinationTypeTextView.text = item.examinationType
+        holder.nameTextView.text = item.nama_pasien
+        holder.dateTextView.text = item.tanggal_kunjungan
+        holder.examinationTypeTextView.text = item.jenis_periksa
 
-        if (item.status) {
+        if (item.status_hasil) {
             holder.downloadTextView.text = "Download"
             holder.pdfImageView.setImageResource(R.drawable.pdf_status_red)
         } else {

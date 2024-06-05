@@ -4,36 +4,55 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.firebase.firestore.FirebaseFirestore
+import com.mira.mira.data.api.MiraApiService
 import com.mira.mira.data.model.ResultItem
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
-class ResultsViewModel : ViewModel() {
-    private val _results = MutableLiveData<List<ResultItem>>()
-    val results: LiveData<List<ResultItem>> get() = _results
+class ResultsViewModel(private val token: String) : ViewModel(){
+
+    private val _resultsList = MutableLiveData<List<ResultItem>>()
+    val results: LiveData<List<ResultItem>> get() = _resultsList
 
     init {
-        fetchResultsFromFirestore()
+        fetchResultsFromApi()
     }
 
-    private fun fetchResultsFromFirestore() {
-        val db = FirebaseFirestore.getInstance()
-        db.collection("pasien")
-            .get()
-            .addOnSuccessListener { result ->
-                val resultList = mutableListOf<ResultItem>()
-                for (document in result) {
-                    val name = document.getString("nama_pasien") ?: ""
-                    val date = document.getString("tanggal_kunjungan") ?: ""
-                    val examinationType = document.getString("jenis_periksa") ?: ""
-                    val status = document.getBoolean("status_hasil") ?: false
-                    val resultItem = ResultItem(name, date, examinationType, status)
-                    resultList.add(resultItem)
+    private fun fetchResultsFromApi() {
+        val logging = HttpLoggingInterceptor()
+        logging.level = HttpLoggingInterceptor.Level.BODY
+
+        val httpClient = OkHttpClient.Builder()
+            .addInterceptor(logging)
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://mira-backend-abwswzd4sa-et.a.run.app/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(httpClient)
+            .build()
+
+        val service = retrofit.create(MiraApiService::class.java)
+
+        service.getResultPatients("Bearer $token").enqueue(object : Callback<List<ResultItem>> {
+            override fun onResponse(call: Call<List<ResultItem>>, response: Response<List<ResultItem>>) {
+                if (response.isSuccessful) {
+                    _resultsList.value = response.body()
+                } else {
+                    _resultsList.value = emptyList()
+                    Log.e("ResultViewModel", "Error fetching results: ${response.errorBody()}")
                 }
-                _results.value = resultList
             }
-            .addOnFailureListener { exception ->
-                _results.value = emptyList()
-                Log.e("ResultsViewModel", "Error fetching results: ${exception.message}")
+
+            override fun onFailure(call: Call<List<ResultItem>>, t: Throwable) {
+                _resultsList.value = emptyList()
+                Log.e("ResultViewModel", "Error fetching results: ${t.message}")
             }
+        })
     }
 }

@@ -21,7 +21,7 @@ class HistoryAdapter(private val historyList: List<HistoryItem>) : RecyclerView.
         holder.dateTextView.text = historyItem.tanggal_kunjungan
         holder.timeTextView.text = historyItem.jam_kunjungan
         holder.dayTextView.text = historyItem.hari_kunjungan
-        holder.examTextView.text = historyItem.exam
+        holder.examTextView.text = historyItem.jenis_periksa
 
         when (historyItem.status) {
             "Menunggu Konfirmasi" -> {

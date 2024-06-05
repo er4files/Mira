@@ -1,5 +1,6 @@
 package com.mira.mira.view.profile
 
+import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,14 +9,24 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.mira.mira.data.api.MiraApiService
+import com.mira.mira.data.model.UserData
 import com.mira.mira.databinding.FragmentProfileBinding
 import com.mira.mira.view.main.MainActivity
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private lateinit var firestore: FirebaseFirestore
+    private lateinit var miraApiService: MiraApiService
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,30 +34,47 @@ class ProfileFragment : Fragment() {
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         firestore = FirebaseFirestore.getInstance()
+
+        val token = retrieveTokenFromSharedPreferences() // Mendapatkan token dari SharedPreferences
+
+        val logging = HttpLoggingInterceptor()
+        logging.level = HttpLoggingInterceptor.Level.BODY
+
+        val httpClient = OkHttpClient.Builder()
+            .addInterceptor(logging)
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://mira-backend-abwswzd4sa-et.a.run.app/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(httpClient)
+            .build()
+
+        miraApiService = retrofit.create(MiraApiService::class.java)
+
+        miraApiService.getUserData("Bearer $token").enqueue(object : Callback<UserData> {
+            override fun onResponse(call: Call<UserData>, response: Response<UserData>) {
+                if (response.isSuccessful) {
+                    val userData = response.body()
+                    userData?.let {
+                        binding.tvUser.text = it.username
+                        binding.tvPhone.text = it.phoneNumber
+                    }
+                } else {
+                    Toast.makeText(requireContext(), "Failed to fetch user data", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<UserData>, t: Throwable) {
+                Toast.makeText(requireContext(), "Failed to fetch user data: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val currentUser = FirebaseAuth.getInstance().currentUser
-
-        currentUser?.let {
-            firestore.collection("users").document(it.uid).get()
-                .addOnSuccessListener { document ->
-                    if (document != null) {
-                        val username = document.getString("username") ?: "Default Name"
-                        val phoneNumber = document.getString("phoneNumber") ?: "Default Phone"
-                        binding.tvUser.text = username
-                        binding.tvPhone.text = phoneNumber
-                    } else {
-                        Toast.makeText(requireContext(), "No such document", Toast.LENGTH_SHORT).show()
-                    }
-                }
-                .addOnFailureListener { e ->
-                    Toast.makeText(requireContext(), "Failed to fetch user data: ${e.message}", Toast.LENGTH_SHORT).show()
-                }
-        }
 
         binding.logoutButton.setOnClickListener {
             (requireActivity() as? MainActivity)?.logout()
@@ -56,5 +84,11 @@ class ProfileFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun retrieveTokenFromSharedPreferences(): String {
+        // Dapatkan token dari SharedPreferences atau sumber lainnya
+        val sharedPreferences = requireContext().getSharedPreferences("user_session", MODE_PRIVATE)
+        return sharedPreferences.getString("auth_token", "") ?: ""
     }
 }

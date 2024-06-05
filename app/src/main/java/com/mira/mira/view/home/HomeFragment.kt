@@ -1,4 +1,6 @@
 package com.mira.mira.view.home
+
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,9 +14,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.mira.mira.R
+import com.mira.mira.data.api.MiraApiService
+import com.mira.mira.data.model.UserData
 import com.mira.mira.view.adapter.ArticleAdapter
 import com.mira.mira.view.article.ArticleActivity
 import com.mira.mira.view.consultation.ConsultationActivity
@@ -22,6 +25,13 @@ import com.mira.mira.view.history.HistoryActivity
 import com.mira.mira.view.notification.NotificationActivity
 import com.mira.mira.view.article.ArticleViewModel
 import com.mira.mira.view.formReservation.FormReservationActivity
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class HomeFragment : Fragment() {
 
@@ -30,8 +40,13 @@ class HomeFragment : Fragment() {
     private lateinit var articleViewModel: ArticleViewModel
     private lateinit var tvUser: TextView
     private lateinit var firestore: FirebaseFirestore
+    private lateinit var miraApiService: MiraApiService
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
         // Initialize RecyclerView
@@ -54,30 +69,48 @@ class HomeFragment : Fragment() {
         // Initialize TextView
         tvUser = view.findViewById(R.id.tv_user)
 
-        // Retrieve username from Firestore
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        currentUser?.let {
-            firestore.collection("users").document(it.uid).get()
-                .addOnSuccessListener { document ->
-                    if (document != null) {
-                        val username = document.getString("username") ?: "User"
-                        // Set username to TextView
-                        tvUser.text = username
-                    } else {
-                        tvUser.text = "User"
+        // Retrieve token from SharedPreferences
+        val token = retrieveTokenFromSharedPreferences()
+
+        // Initialize Retrofit
+        val logging = HttpLoggingInterceptor()
+        logging.level = HttpLoggingInterceptor.Level.BODY
+
+        val httpClient = OkHttpClient.Builder()
+            .addInterceptor(logging)
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://mira-backend-abwswzd4sa-et.a.run.app/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(httpClient)
+            .build()
+
+        miraApiService = retrofit.create(MiraApiService::class.java)
+
+        // Fetch username from API
+        miraApiService.getUserData("Bearer $token").enqueue(object : Callback<UserData> {
+            override fun onResponse(call: Call<UserData>, response: Response<UserData>) {
+                if (response.isSuccessful) {
+                    val userData = response.body()
+                    userData?.let {
+                        tvUser.text = it.username
                     }
-                }
-                .addOnFailureListener { e ->
+                } else {
                     tvUser.text = "User"
                 }
-        }
+            }
+
+            override fun onFailure(call: Call<UserData>, t: Throwable) {
+                tvUser.text = "User"
+            }
+        })
 
         setUpFeatureClickListeners(view)
 
-        //floatingactionbutton
+        // Floating action button
         val fab: FloatingActionButton = view.findViewById(R.id.elevated_button_id)
         TooltipCompat.setTooltipText(fab, "Ada yang bisa saya bantu?")
-
 
         return view
     }
@@ -115,5 +148,11 @@ class HomeFragment : Fragment() {
             val intent = Intent(activity, ArticleActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun retrieveTokenFromSharedPreferences(): String {
+        // Retrieve token from SharedPreferences or other source
+        val sharedPreferences = requireContext().getSharedPreferences("user_session", MODE_PRIVATE)
+        return sharedPreferences.getString("auth_token", "") ?: ""
     }
 }

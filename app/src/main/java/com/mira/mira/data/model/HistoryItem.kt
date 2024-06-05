@@ -5,6 +5,6 @@ data class HistoryItem(
     val tanggal_kunjungan: String,
     val jam_kunjungan: String,
     val hari_kunjungan: String,
-    val exam: String,
+    val jenis_periksa: String,
     val status: String
 )
