@@ -1,17 +1,16 @@
+
 package com.mira.mira.view.history
 
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mira.mira.R
-import com.mira.mira.data.model.HistoryItem
 import com.mira.mira.view.adapter.HistoryAdapter
 
 class HistoryActivity : AppCompatActivity() {
@@ -33,13 +32,11 @@ class HistoryActivity : AppCompatActivity() {
             finish()
         }
 
-        // Inisialisasi ViewModel
-        viewModel = ViewModelProvider(this).get(HistoryViewModel::class.java)
+        viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(application)).get(HistoryViewModel::class.java)
 
         val recyclerView: RecyclerView = findViewById(R.id.rc_listhistory)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Observasi perubahan data dari ViewModel
         viewModel.historyList.observe(this) { historyList ->
             recyclerView.adapter = HistoryAdapter(historyList)
         }

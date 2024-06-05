@@ -7,15 +7,23 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
 import com.mira.mira.R
+import com.mira.mira.data.api.AuthService
+import com.mira.mira.data.api.LoginRequest
+import com.mira.mira.data.api.LoginResponse
 import com.mira.mira.databinding.ActivityLoginBinding
-import com.mira.mira.view.main.MainActivity
+import com.mira.mira.view.history.HistoryActivity
 import com.mira.mira.view.signup.SignupActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var authService: AuthService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +31,13 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://identitytoolkit.googleapis.com/") // Pastikan URL diakhiri dengan garis miring (/)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        authService = retrofit.create(AuthService::class.java)
 
         setupAction()
 
@@ -39,30 +54,33 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.loginButton.setOnClickListener {
-            if (binding.emailEditText.text.toString()
-                    .isNotEmpty() && binding.passwordEditText.text.toString().isNotEmpty()
-            ) {
-                val email = binding.emailEditText.text.toString()
-                val password = binding.passwordEditText.text.toString()
+            val email = binding.emailEditText.text.toString()
+            val password = binding.passwordEditText.text.toString()
 
-                FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            // Login successful
-                            sharedPreferences.edit().putBoolean("is_logged_in", true).apply()
-                            val intent = Intent(this, MainActivity::class.java)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                val loginRequest = LoginRequest(email, password)
+                authService.signInWithEmail(loginRequest).enqueue(object : Callback<LoginResponse> {
+                    override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                        if (response.isSuccessful) {
+                            val token = response.body()?.idToken ?: ""
+                            sharedPreferences.edit().apply {
+                                putString("auth_token", token)
+                                apply()
+                            }
+
+                            val intent = Intent(this@LoginActivity, HistoryActivity::class.java)
                             startActivity(intent)
                             finish()
                         } else {
-                            // Login failed
-                            Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT)
-                                .show()
+                            Toast.makeText(this@LoginActivity, "Authentication failed.", Toast.LENGTH_SHORT).show()
                         }
                     }
 
+                    override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                        Toast.makeText(this@LoginActivity, "Authentication failed: ${t.message}", Toast.LENGTH_SHORT).show()
+                    }
+                })
             }
-
         }
     }
 }
