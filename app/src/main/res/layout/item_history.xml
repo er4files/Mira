@@ -35,9 +35,17 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="8dp">
+                <TextView
+                    android:id="@+id/tv_hari_kunjungan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Monday"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    android:layout_marginEnd="16dp" />
 
                 <TextView
-                    android:id="@+id/tv_item_pemeriksaan"
+                    android:id="@+id/tv_tanggal_kunjungan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="01 Jan 1990"
@@ -46,7 +54,7 @@
                     android:layout_marginEnd="16dp" />
 
                 <TextView
-                    android:id="@+id/tv_waktu_pemeriksaan"
+                    android:id="@+id/tv_waktu_kunjungan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="07:00-10:00"
