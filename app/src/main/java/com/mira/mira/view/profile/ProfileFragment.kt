@@ -1,3 +1,4 @@
+// ProfileFragment.kt
 package com.mira.mira.view.profile
 
 import android.content.Context.MODE_PRIVATE
@@ -7,8 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.firebase.auth.FirebaseAuth
+import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
+import com.mira.mira.R
 import com.mira.mira.data.api.MiraApiService
 import com.mira.mira.data.model.UserData
 import com.mira.mira.databinding.FragmentProfileBinding
@@ -35,7 +37,7 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         firestore = FirebaseFirestore.getInstance()
 
-        val token = retrieveTokenFromSharedPreferences() // Mendapatkan token dari SharedPreferences
+        val token = retrieveTokenFromSharedPreferences()
 
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
@@ -59,6 +61,11 @@ class ProfileFragment : Fragment() {
                     userData?.let {
                         binding.tvUser.text = it.username
                         binding.tvPhone.text = it.phoneNumber
+                        Glide.with(requireContext())
+                            .load(it.profile_picture)
+                            .placeholder(R.drawable.profil_picture)
+                            .error(R.drawable.ic_error)
+                            .into(binding.ivProfileUser)
                     }
                 } else {
                     Toast.makeText(requireContext(), "Failed to fetch user data", Toast.LENGTH_SHORT).show()
@@ -76,6 +83,10 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btnEditProfile.setOnClickListener {
+            EditProfileDialogFragment.newInstance().show(parentFragmentManager, "EditProfileDialogFragment")
+        }
+
         binding.logoutButton.setOnClickListener {
             (requireActivity() as? MainActivity)?.logout()
         }
@@ -87,8 +98,12 @@ class ProfileFragment : Fragment() {
     }
 
     private fun retrieveTokenFromSharedPreferences(): String {
-        // Dapatkan token dari SharedPreferences atau sumber lainnya
         val sharedPreferences = requireContext().getSharedPreferences("user_session", MODE_PRIVATE)
         return sharedPreferences.getString("auth_token", "") ?: ""
     }
+
+    fun onProfileUpdated() {
+        Toast.makeText(requireContext(), "Profile updated successfully", Toast.LENGTH_SHORT).show()
+    }
 }
+

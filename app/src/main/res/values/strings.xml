@@ -54,5 +54,7 @@
     <string name="chat">Chat</string>
     <string name="call">Call</string>
     <string name="help_button_description">help</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
