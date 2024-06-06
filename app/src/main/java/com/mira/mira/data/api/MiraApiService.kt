@@ -1,5 +1,6 @@
 package com.mira.mira.data.api
 
+import com.mira.mira.data.model.Doctor
 import com.mira.mira.data.model.HistoryItem
 import com.mira.mira.data.model.Notification
 import com.mira.mira.data.model.ResultItem
@@ -39,6 +40,9 @@ interface MiraApiService {
         @Path("id") patientId: String,
         @Header("Authorization") token: String
     ): Call<List<Notification>>
+
+    @GET("doctors")
+    fun getDoctors(@Header("Authorization") token: String): Call<List<Doctor>>
 
     @FormUrlEncoded
     @POST("/add")
