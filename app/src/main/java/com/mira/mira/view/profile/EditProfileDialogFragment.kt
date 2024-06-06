@@ -13,7 +13,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.mira.mira.R
 import com.mira.mira.data.api.MiraApiService
 import com.mira.mira.data.model.UserData
 import com.mira.mira.databinding.FragmentEditProfileBinding
@@ -121,7 +120,7 @@ class EditProfileDialogFragment : DialogFragment() {
                     if (response.isSuccessful) {
                         Toast.makeText(requireContext(), "Profile updated successfully", Toast.LENGTH_SHORT).show()
                         (parentFragment as? ProfileFragment)?.onProfileUpdated()
-                        dismiss() // Tutup dialog
+                        dismiss()
                     } else {
                         Toast.makeText(requireContext(), "Failed to update profile", Toast.LENGTH_SHORT).show()
                     }

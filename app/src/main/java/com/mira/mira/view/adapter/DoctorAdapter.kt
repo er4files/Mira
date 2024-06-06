@@ -8,10 +8,11 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.mira.mira.R
 import com.mira.mira.data.model.Doctor
 
-class DoctorAdapter(private val doctors: List<Doctor>) : RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder>() {
+class DoctorAdapter(private var doctors: List<Doctor>) : RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoctorViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_doctor, parent, false)
@@ -27,6 +28,11 @@ class DoctorAdapter(private val doctors: List<Doctor>) : RecyclerView.Adapter<Do
         return doctors.size
     }
 
+    fun updateDoctors(newDoctors: List<Doctor>) {
+        doctors = newDoctors
+        notifyDataSetChanged()
+    }
+
     class DoctorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val doctorImage: ImageView = itemView.findViewById(R.id.iv_profiledoctor)
         private val doctorName: TextView = itemView.findViewById(R.id.doctor_name_item)
@@ -36,9 +42,9 @@ class DoctorAdapter(private val doctors: List<Doctor>) : RecyclerView.Adapter<Do
         private val callButton: Button = itemView.findViewById(R.id.call_button)
 
         fun bind(doctor: Doctor) {
-            doctorImage.setImageResource(doctor.imageResId)
-            doctorName.text = doctor.name
-            doctorSpecialization.text = doctor.specialization
+            Glide.with(itemView.context).load(doctor.profile_picture).into(doctorImage)
+            doctorName.text = doctor.nama
+            doctorSpecialization.text = doctor.spesialis
             doctorRating.rating = doctor.rating
 
             chatButton.setOnClickListener {

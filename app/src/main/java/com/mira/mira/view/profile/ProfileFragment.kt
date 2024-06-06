@@ -1,4 +1,3 @@
-// ProfileFragment.kt
 package com.mira.mira.view.profile
 
 import android.content.Context.MODE_PRIVATE
