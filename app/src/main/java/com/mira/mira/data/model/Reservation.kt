@@ -11,5 +11,6 @@ data class Reservation(
     val email : String,
     val tanggal_kunjungan : String,
     val jam_kunjungan : String,
+    val jenis_periksa : String,
 ) {
 }
