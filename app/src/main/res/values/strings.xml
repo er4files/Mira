@@ -53,8 +53,10 @@
     <string name="spesialis">Cardiologist</string>
     <string name="chat">Chat</string>
     <string name="call">Call</string>
-    <string name="help_button_description">help</string>
+    <string name="help_button_description">Help</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="reservation_select_time">Select Time</string>
+    <string name="reservation_examination_type">Examination Type</string>
 
 </resources>

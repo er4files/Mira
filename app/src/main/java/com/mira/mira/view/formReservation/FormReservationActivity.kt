@@ -2,24 +2,31 @@ package com.mira.mira.view.formReservation
 
 import android.app.DatePickerDialog
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.mira.mira.R
 import com.mira.mira.databinding.ActivityFormReservationBinding
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
+
 class FormReservationActivity : AppCompatActivity() {
     private lateinit var binding:ActivityFormReservationBinding
+
+    private var reservationTypes  : Array<String> = arrayOf("Tumor Otak", "Kanker")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFormReservationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.dateTv.text = intent.getStringExtra(RESERVATION_DATE)
+        val date = intent.getStringExtra(RESERVATION_DATE)
+
+        binding.dateTv.text = date
+        binding.timeTv.text = intent.getStringExtra(RESERVATION_TIME)
+
+        val adapter = ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, reservationTypes)
+        adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
+        binding.spinnerType.adapter = adapter
 
         binding.editTextDate.setOnClickListener{
             val today = Calendar.getInstance()
@@ -41,6 +48,7 @@ class FormReservationActivity : AppCompatActivity() {
 
     companion object{
         const val RESERVATION_DATE = "reservation_date"
+        const val RESERVATION_TIME = "reservation_time"
     }
 
 }
