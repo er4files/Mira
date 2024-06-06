@@ -51,18 +51,18 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/iv_profile"
+                android:id="@+id/iv_profile_user"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:scaleType="centerCrop"
-                android:background="@drawable/profil_picture"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
+
 
             <TextView
                 android:id="@+id/tv_user"
@@ -76,9 +76,9 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 style="@style/profileHeaderText"
-                app:layout_constraintEnd_toStartOf="@id/imageButton"
-                app:layout_constraintStart_toEndOf="@id/iv_profile"
-                app:layout_constraintTop_toTopOf="@id/iv_profile"
+                app:layout_constraintEnd_toStartOf="@id/btn_edit_profile"
+                app:layout_constraintStart_toEndOf="@id/iv_profile_user"
+                app:layout_constraintTop_toTopOf="@id/iv_profile_user"
                 app:layout_constraintBottom_toTopOf="@id/tv_phone" />
 
             <TextView
@@ -87,12 +87,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:text="@string/phone_number"
-                app:layout_constraintStart_toEndOf="@id/iv_profile"
+                app:layout_constraintStart_toEndOf="@id/iv_profile_user"
                 app:layout_constraintTop_toBottomOf="@id/tv_user"
-                app:layout_constraintBottom_toBottomOf="@id/iv_profile" />
+                app:layout_constraintBottom_toBottomOf="@id/iv_profile_user" />
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/btn_edit_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#00FFFFFF"

@@ -4,7 +4,7 @@ import com.mira.mira.data.model.ApiResponse
 import retrofit2.http.GET
 
 interface ApiService {
-    @GET("antara/lifestyle/")
+    @GET("tempo/gaya/")
     suspend fun getArticles(): ApiResponse
 
     @GET("tempo/cantik/")

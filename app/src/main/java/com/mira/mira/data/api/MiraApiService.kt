@@ -1,11 +1,18 @@
 package com.mira.mira.data.api
 
 import com.mira.mira.data.model.HistoryItem
+import com.mira.mira.data.model.Notification
 import com.mira.mira.data.model.ResultItem
 import com.mira.mira.data.model.UserData
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Multipart
+import retrofit2.http.PATCH
+import retrofit2.http.Part
+import retrofit2.http.Path
 
 interface MiraApiService {
     @GET("patients")
@@ -16,4 +23,18 @@ interface MiraApiService {
 
     @GET("user")
     fun getUserData(@Header("Authorization") token: String): Call<UserData>
+    @Multipart
+    @PATCH("user")
+    fun updateUserData(
+        @Header("Authorization") token: String,
+        @Part("username") username: RequestBody,
+        @Part("phoneNumber") phone: RequestBody,
+        @Part profile_picture: MultipartBody.Part?
+    ): Call<UserData>
+
+    @GET("/patient/{id}/notification")
+    fun getNotifications(
+        @Path("id") patientId: String,
+        @Header("Authorization") token: String
+    ): Call<List<Notification>>
 }
