@@ -1,5 +1,6 @@
 package com.mira.mira.data.api
 
+import com.mira.mira.data.api.response.ReservationAddResponse
 import com.mira.mira.data.model.Doctor
 import com.mira.mira.data.model.HistoryItem
 import com.mira.mira.data.model.Notification
@@ -46,7 +47,7 @@ interface MiraApiService {
 
     @FormUrlEncoded
     @POST("/add")
-    fun addForm(
+    fun addReservation(
         @Header("Authorization") token: String,
         @Part("nama_pasien") nama_pasien: String,
         @Part("alamat") alamat : String,
@@ -57,5 +58,5 @@ interface MiraApiService {
         @Part("tanggal_kunjungan") tanggal_kunjungan : String,
         @Part("jam_kunjungan") jam_kunjungan : String,
         @Part("jenis_periksa") jenis_periksa : String
-    ) : Call<UserData>
+    ) : Call<ReservationAddResponse>
 }

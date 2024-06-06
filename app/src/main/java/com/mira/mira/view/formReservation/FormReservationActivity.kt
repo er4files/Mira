@@ -1,12 +1,17 @@
 package com.mira.mira.view.formReservation
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.ImageView
+import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
-import com.mira.mira.R
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.mira.mira.data.model.Reservation
 import com.mira.mira.databinding.ActivityFormReservationBinding
+import com.mira.mira.view.history.HistoryActivity
+import com.mira.mira.view.history.HistoryViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
@@ -15,16 +20,30 @@ class FormReservationActivity : AppCompatActivity() {
     private lateinit var binding:ActivityFormReservationBinding
 
     private var reservationTypes  : Array<String> = arrayOf("Tumor Otak", "Kanker")
+    private lateinit var date : String
+    private lateinit var time : String
+
+    private lateinit var viewModel: FormReservationViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFormReservationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val date = intent.getStringExtra(RESERVATION_DATE)
+        val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val token = sharedPreferences.getString("auth_token", "") ?: ""
 
-        binding.dateTv.text = date
-        binding.timeTv.text = intent.getStringExtra(RESERVATION_TIME)
+        // Inisialisasi ViewModel
+        viewModel = ViewModelProvider(this, FormReservationViewModelFactory(token)).get(FormReservationViewModel::class.java)
+
+        val displayDate = intent.getStringExtra(RESERVATION_DATE)
+        binding.dateTv.text = displayDate
+
+        time = intent.getStringExtra(RESERVATION_TIME).toString()
+        binding.timeTv.text = time
+
+        val dateSplit = displayDate.toString().split(',')
+        date = dateSplit[1]
 
         val adapter = ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, reservationTypes)
         adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
@@ -47,15 +66,46 @@ class FormReservationActivity : AppCompatActivity() {
             datePicker.show()
         }
 
-        val backIcon: ImageView = findViewById(R.id.back_icon)
-        backIcon.setOnClickListener {
-            finish()
+        binding.reservationButton.setOnClickListener {
+            val name = binding.nameEditText.text.toString()
+            val dateBirth = binding.editTextDate.text.toString()
+            val gender = getRadioButton()
+            val address = binding.addressEditText.text.toString()
+            val email = binding.emailEditText.text.toString()
+            val phone = binding.phoneEditText.text.toString()
+            val type = binding.spinnerType.selectedItem.toString()
+
+            if(name.isNotEmpty() && dateBirth.isNotEmpty() && gender.isNotEmpty() && address.isNotEmpty() && email.isNotEmpty() && phone.isNotEmpty() && type.isNotEmpty()){
+                val reservation : Reservation = Reservation(name, address, dateBirth, gender, phone, email, date, time, type)
+                viewModel.addReservation(reservation)
+            }
         }
     }
+
+    private fun getRadioButton() : String{
+        for (i in 0 until binding.genderRadioGroup.childCount){
+            val radioButton = binding.genderRadioGroup.getChildAt(i) as RadioButton
+            if(radioButton.isChecked){
+                return radioButton.text.toString()
+            }
+        }
+        return ""
+    }
+
 
     companion object{
         const val RESERVATION_DATE = "reservation_date"
         const val RESERVATION_TIME = "reservation_time"
+    }
+
+    class FormReservationViewModelFactory(private val token: String) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(FormReservationViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return FormReservationViewModel(token) as T
+            }
+            throw IllegalArgumentException("Unknown ViewModel class")
+        }
     }
 
 }
