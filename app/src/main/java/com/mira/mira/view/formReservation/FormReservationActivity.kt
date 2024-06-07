@@ -4,10 +4,12 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.mira.mira.R
 import com.mira.mira.data.model.Reservation
 import com.mira.mira.databinding.ActivityFormReservationBinding
 import com.mira.mira.view.history.HistoryActivity
@@ -79,6 +81,11 @@ class FormReservationActivity : AppCompatActivity() {
                 val reservation : Reservation = Reservation(name, address, dateBirth, gender, phone, email, date, time, type)
                 viewModel.addReservation(reservation)
             }
+        }
+
+        val backIcon: ImageView = findViewById(R.id.back_icon)
+        backIcon.setOnClickListener {
+            finish()
         }
     }
 
