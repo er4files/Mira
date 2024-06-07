@@ -1,4 +1,3 @@
-
 package com.mira.mira.data.service
 
 import android.app.NotificationChannel
@@ -77,3 +76,4 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         private const val TAG = "MyFirebaseMsgService"
     }
 }
+
