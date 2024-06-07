@@ -2,7 +2,7 @@
 <resources>
     <color name="white">#FFFFFF</color> <!-- TEXT/ICONS -->
     <color name="black">#000000</color> <!-- TEXT/ICONS -->
-    <color name="light_blue">#03A9F4</color> <!-- ACCENT COLOR -->
+    <color name="light_blue">#5EC6DE</color> <!-- ACCENT COLOR -->
     <color name="dark_blue">#303F9F</color> <!-- DARK PRIMARY COLOR -->
     <color name="light_gray">#C5CAE9</color> <!-- LIGHT PRIMARY COLOR -->
     <color name="gray">#212121</color> <!-- PRIMARY TEXT -->
