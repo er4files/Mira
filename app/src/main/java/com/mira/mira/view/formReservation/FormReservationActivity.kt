@@ -3,7 +3,9 @@ package com.mira.mira.view.formReservation
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.mira.mira.R
 import com.mira.mira.databinding.ActivityFormReservationBinding
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -43,6 +45,11 @@ class FormReservationActivity : AppCompatActivity() {
                     this.binding.editTextDate.setText(str)
                 }, year, month, day)
             datePicker.show()
+        }
+
+        val backIcon: ImageView = findViewById(R.id.back_icon)
+        backIcon.setOnClickListener {
+            finish()
         }
     }
 
