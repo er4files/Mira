@@ -1,5 +1,7 @@
 package com.mira.mira.view.adapter
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +20,26 @@ class ResultsAdapter(private var items: List<ResultItem>) :
         val examinationTypeTextView: TextView = view.findViewById(R.id.tv_jenis_periksa)
         val downloadTextView: TextView = view.findViewById(R.id.tv_download)
         val pdfImageView: ImageView = view.findViewById(R.id.iv_pdf)
+
+        fun bind(item: ResultItem) {
+            nameTextView.text = item.nama_pasien
+            dateTextView.text = item.tanggal_kunjungan
+            examinationTypeTextView.text = item.jenis_periksa
+
+            if (item.status_hasil) {
+                downloadTextView.text = "Download"
+                pdfImageView.setImageResource(R.drawable.pdf_status_red)
+                pdfImageView.setOnClickListener {
+                    val context = pdfImageView.context
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(item.result))
+                    context.startActivity(intent)
+                }
+            } else {
+                downloadTextView.text = "Proses"
+                pdfImageView.setImageResource(R.drawable.pdf_status_gray)
+                pdfImageView.setOnClickListener(null) // remove click listener if not downloadable
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultViewHolder {
@@ -27,24 +49,13 @@ class ResultsAdapter(private var items: List<ResultItem>) :
 
     override fun onBindViewHolder(holder: ResultViewHolder, position: Int) {
         val item = items[position]
-        holder.nameTextView.text = item.nama_pasien
-        holder.dateTextView.text = item.tanggal_kunjungan
-        holder.examinationTypeTextView.text = item.jenis_periksa
-
-        if (item.status_hasil) {
-            holder.downloadTextView.text = "Download"
-            holder.pdfImageView.setImageResource(R.drawable.pdf_status_red)
-        } else {
-            holder.downloadTextView.text = "Proses"
-            holder.pdfImageView.setImageResource(R.drawable.pdf_status_gray)
-        }
+        holder.bind(item)
     }
 
+    override fun getItemCount() = items.size
 
     fun updateData(newItems: List<ResultItem>) {
         items = newItems
         notifyDataSetChanged()
     }
-
-    override fun getItemCount() = items.size
 }
