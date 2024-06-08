@@ -14,7 +14,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ResultsViewModel(private val token: String) : ViewModel(){
+class ResultsViewModel(private val token: String) : ViewModel() {
 
     private val _resultsList = MutableLiveData<List<ResultItem>>()
     val results: LiveData<List<ResultItem>> get() = _resultsList
@@ -51,7 +51,7 @@ class ResultsViewModel(private val token: String) : ViewModel(){
 
             override fun onFailure(call: Call<List<ResultItem>>, t: Throwable) {
                 _resultsList.value = emptyList()
-                Log.e("ResultViewModel", "Error fetching results: ${t.message}")
+                Log.e("ResultViewModel", "Error fetching results", t)
             }
         })
     }

@@ -43,7 +43,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
-                        android:text="@string/rahmad_era_sugiarto"
+                        android:text="Rahmad Era Sugiarto"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -53,7 +53,7 @@
                         android:layout_height="wrap_content"
                         android:maxLines="2"
                         android:ellipsize="end"
-                        android:text="@string/tanggal_lahir"
+                        android:text="Tanggal Lahir"
                         android:textSize="14sp"
                         android:textStyle="normal" />
                 </LinearLayout>
@@ -86,7 +86,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
-                        android:text="@string/pemeriksaan_extrimitas_atas_pergelangan_tangan"
+                        android:text="Pemeriksaan Extrimitas Atas Pergelangan Tangan"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -96,13 +96,13 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="2"
-                        android:text="@string/selengkapnya"
+                        android:text="Selengkapnya"
                         android:textSize="10sp"
                         android:textStyle="normal" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/status_result"
+                    android:id="@+id/unduh_result"
                     android:layout_width="132dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
