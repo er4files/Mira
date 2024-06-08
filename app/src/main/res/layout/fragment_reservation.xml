@@ -187,6 +187,8 @@
             android:elevation="4dp"
             android:text="Radiology Appointment"
             android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/cardView2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView2" />
