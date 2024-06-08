@@ -231,7 +231,6 @@
 
             <Button
                 android:id="@+id/reservationButton"
-                style="@style/button_success"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
