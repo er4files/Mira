@@ -58,5 +58,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="reservation_select_time">Select Time</string>
     <string name="reservation_examination_type">Examination Type</string>
+    <string name="fragment_reservation_select_date_first">Please select the date first!</string>
 
 </resources>
