@@ -35,6 +35,12 @@ class LoginActivity : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
 
+        // Check if user is already logged in
+        if (isUserLoggedIn()) {
+            navigateToMain()
+            return
+        }
+
         val retrofit = Retrofit.Builder()
             .baseUrl("https://identitytoolkit.googleapis.com/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -54,6 +60,17 @@ class LoginActivity : AppCompatActivity() {
         backIcon.setOnClickListener {
             finish()
         }
+    }
+
+    private fun isUserLoggedIn(): Boolean {
+        val token = sharedPreferences.getString("auth_token", "")
+        return token?.isNotBlank() ?: false
+    }
+
+    private fun navigateToMain() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun isValidEmail(email: String): Boolean {
@@ -82,10 +99,7 @@ class LoginActivity : AppCompatActivity() {
                                 putString("localId", response.body()?.localId ?: "")
                                 apply()
                             }
-                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                            startActivity(intent)
-                            finish()
+                            navigateToMain()
                         } else {
                             val errorMessage = when (response.code()) {
                                 400 -> "Invalid email or password."

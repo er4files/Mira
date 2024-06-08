@@ -19,10 +19,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+
+        // Check user login status
+        if (!isUserLoggedIn()) {
+            navigateToWelcome()
+            return
+        }
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         val appBarConfiguration = AppBarConfiguration(
@@ -35,11 +41,6 @@ class MainActivity : AppCompatActivity() {
         )
         val navView = binding.navView
         navView.setupWithNavController(navController)
-
-        // Check user login status
-        if (!isUserLoggedIn()) {
-            navigateToWelcome()
-        }
     }
 
     fun logout() {
@@ -51,10 +52,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun isUserLoggedIn(): Boolean {
         val tempId = sharedPreferences.getString("localId", "")
-        if(tempId.toString().isNotBlank()){
-            return true
-        }
-        return false
+        return tempId?.isNotBlank() ?: false
     }
 
     private fun navigateToWelcome() {
@@ -64,6 +62,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clearSession() {
-        sharedPreferences.edit().putBoolean("is_logged_in", false).apply()
+        sharedPreferences.edit().clear().apply()
     }
 }
