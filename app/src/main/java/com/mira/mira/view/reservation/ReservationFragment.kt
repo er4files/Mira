@@ -20,6 +20,7 @@ import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_KEYB
 import com.google.android.material.timepicker.TimeFormat
 import com.mira.mira.R
 import com.mira.mira.databinding.FragmentReservationBinding
+import com.mira.mira.view.CustomTimePickerDialog
 import com.mira.mira.view.formReservation.FormReservationActivity
 import com.mira.mira.view.history.HistoryActivity
 import java.text.SimpleDateFormat
@@ -73,31 +74,13 @@ class ReservationFragment : Fragment() {
             datePicker.show()
         }
 
-
-
         binding.timeTextInputEdit.setOnClickListener {
             if(binding.dateTextInputEdit.text.toString().isNotEmpty()){
-                var selectedHour = 0
-                var selectedMinute = 0
-                val timePickerDialog = TimePickerDialog(context,
-                    { view, hourOfDay, minute ->
-                        // Update time on text edit and selected variables
-                        binding.timeTextInputEdit.setText(String.format("%02d:%02d", hourOfDay, minute))
-                        selectedHour = hourOfDay
-                        selectedMinute = minute
-                    },
-                    // Set initial time (optional)
-                    Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
-                    Calendar.getInstance().get(Calendar.MINUTE),
-                    // Use 24-hour format (optional)
-                    true
-                )
-                timePickerDialog.show()
+                showTimePickerDialog()
             }else{
-                showToast(context, "Please select the date first!")
+                showToast(context, getString(R.string.fragment_reservation_select_date_first))
             }
         }
-
 
 
         binding.reservationButton.setOnClickListener {
@@ -113,6 +96,28 @@ class ReservationFragment : Fragment() {
         }
 
         return view
+    }
+
+    private fun showTimePickerDialog() {
+        val calendar = Calendar.getInstance()
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+        val minute = calendar.get(Calendar.MINUTE)
+
+        val timePickerDialog = context?.let {
+            CustomTimePickerDialog(
+                it,
+                { _, selectedHour, selectedMinute ->
+                    val selectedTime = String.format("%02d:%02d", selectedHour, selectedMinute)
+                    binding.timeTextInputEdit.setText(selectedTime)
+                },
+                hour,
+                if (minute < 30) 0 else 30,
+                true
+            )
+        }
+        if (timePickerDialog != null) {
+            timePickerDialog.show(parentFragmentManager, "timePicker")
+        }
     }
 
     override fun onDestroyView() {
