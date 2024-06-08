@@ -20,12 +20,22 @@ object ApiConfig {
 
 class MiraApiConfig{
     companion object {
+
+
+
         fun getApiService(): MiraApiService {
+            val loggingInterceptor = HttpLoggingInterceptor()
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
             val BASE_URL = "https://mira-backend-abwswzd4sa-et.a.run.app/"
+
+            val client = OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
+                .build()
 
             val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
                 .build()
 
             return retrofit.create(MiraApiService::class.java)

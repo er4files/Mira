@@ -3,15 +3,18 @@ package com.mira.mira.view.formReservation
 import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.mira.mira.R
 import com.mira.mira.data.model.Reservation
 import com.mira.mira.databinding.ActivityFormReservationBinding
+import com.mira.mira.view.CustomTimePickerDialog
 import com.mira.mira.view.history.HistoryActivity
 import com.mira.mira.view.history.HistoryViewModel
 import java.text.SimpleDateFormat
@@ -38,7 +41,7 @@ class FormReservationActivity : AppCompatActivity() {
         // Inisialisasi ViewModel
         viewModel = ViewModelProvider(this, FormReservationViewModelFactory(token)).get(FormReservationViewModel::class.java)
 
-        val displayDate = intent.getStringExtra(RESERVATION_DATE)
+        var displayDate = intent.getStringExtra(RESERVATION_DATE)
         binding.dateTv.text = displayDate
 
         time = intent.getStringExtra(RESERVATION_TIME).toString()
@@ -46,7 +49,7 @@ class FormReservationActivity : AppCompatActivity() {
 
         val dateSplit = displayDate.toString().split(',')
         date = dateSplit[1]
-
+        date = date.replace(" ", "")
         val adapter = ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, reservationTypes)
         adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
         binding.spinnerType.adapter = adapter
@@ -61,7 +64,7 @@ class FormReservationActivity : AppCompatActivity() {
                     val calendar = Calendar.getInstance()
                     calendar.set(selYear, selMonth, selDay)
 
-                    var dateFormat = SimpleDateFormat("dd-MM-yyyy")
+                    var dateFormat = SimpleDateFormat("yyyy-MM-dd")
                     var str = dateFormat.format(calendar.time)
                     this.binding.editTextDate.setText(str)
                 }, year, month, day)
@@ -78,14 +81,25 @@ class FormReservationActivity : AppCompatActivity() {
             val type = binding.spinnerType.selectedItem.toString()
 
             if(name.isNotEmpty() && dateBirth.isNotEmpty() && gender.isNotEmpty() && address.isNotEmpty() && email.isNotEmpty() && phone.isNotEmpty() && type.isNotEmpty()){
-                val reservation : Reservation = Reservation(name, address, dateBirth, gender, phone, email, date, time, type)
+                val reservation = Reservation(name, address, dateBirth, gender, phone, email, date, time, type)
                 viewModel.addReservation(reservation)
+                finish()
             }
         }
+
+            viewModel.message.observe(this@FormReservationActivity){
+                if (it != null) {
+                    showToast(it.message)
+                }
+            }
 
         val backIcon: ImageView = findViewById(R.id.back_icon)
         backIcon.setOnClickListener {
             finish()
+        }
+
+        viewModel.isLoading.observe(this@FormReservationActivity){
+            showLoading(it)
         }
     }
 
@@ -97,6 +111,15 @@ class FormReservationActivity : AppCompatActivity() {
             }
         }
         return ""
+    }
+
+    private fun showLoading(state: Boolean) {
+        binding.progressBar.visibility = if (state) View.VISIBLE else View.GONE
+    }
+
+    private fun showToast(message : String){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        showLoading(false)
     }
 
 

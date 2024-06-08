@@ -16,9 +16,13 @@ class FormReservationViewModel(private val token: String) : ViewModel() {
     private val _message = MutableLiveData<ReservationAddResponse?>()
     val message: MutableLiveData<ReservationAddResponse?> = _message
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading : LiveData<Boolean> = _isLoading
+
     internal fun addReservation(reservationData: Reservation) {
+        _isLoading.value = true
         val client = MiraApiConfig.getApiService().addReservation(
-            token,
+            "Bearer $token",
             reservationData.nama_pasien,
             reservationData.alamat,
             reservationData.tanggal_lahir,
@@ -34,18 +38,24 @@ class FormReservationViewModel(private val token: String) : ViewModel() {
                 call: Call<ReservationAddResponse>,
                 response: Response<ReservationAddResponse>
             ) {
-
+                _isLoading.value = false
                 if (response.isSuccessful) {
                     val responseBody = response.body()
+
                     if (responseBody != null) {
                         _message.value = responseBody
+
+                        Log.i("ViewModel API Success", _message.value!!.message)
                     }
                 } else {
+                    Log.d("ViewModel API Failed", response.errorBody().toString())
+
                 }
             }
 
             override fun onFailure(call: Call<ReservationAddResponse>, t: Throwable) {
-
+                _isLoading.value = false
+                Log.d("ViewModel API Error", t.message.toString())
             }
         })
     }

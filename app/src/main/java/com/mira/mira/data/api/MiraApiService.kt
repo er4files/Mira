@@ -9,6 +9,7 @@ import com.mira.mira.data.model.UserData
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
+import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -49,14 +50,14 @@ interface MiraApiService {
     @POST("/add")
     fun addReservation(
         @Header("Authorization") token: String,
-        @Part("nama_pasien") nama_pasien: String,
-        @Part("alamat") alamat : String,
-        @Part("tanggal_lahir") tanggal_lahir : String,
-        @Part("gender") gender : String,
-        @Part("no_hp") no_hp : String,
-        @Part("email") email : String,
-        @Part("tanggal_kunjungan") tanggal_kunjungan : String,
-        @Part("jam_kunjungan") jam_kunjungan : String,
-        @Part("jenis_periksa") jenis_periksa : String
+        @Field("nama_pasien") nama_pasien: String,
+        @Field("alamat") alamat : String,
+        @Field("tanggal_lahir") tanggal_lahir : String,
+        @Field("gender") gender : String,
+        @Field("no_hp") no_hp : String,
+        @Field("email") email : String,
+        @Field("tanggal_kunjungan") tanggal_kunjungan : String,
+        @Field("jam_kunjungan") jam_kunjungan : String,
+        @Field("jenis_periksa") jenis_periksa : String
     ) : Call<ReservationAddResponse>
 }
