@@ -25,7 +25,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tv_selengkapnya2"
+                android:id="@+id/tv_selengkapnya"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -36,11 +36,11 @@
                 android:textSize="11sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/tv_jenis_periksa2"
-                app:layout_constraintTop_toBottomOf="@+id/tv_jenis_periksa2" />
+                app:layout_constraintStart_toStartOf="@+id/tv_jenis_periksa"
+                app:layout_constraintTop_toBottomOf="@+id/tv_jenis_periksa" />
 
             <TextView
-                android:id="@+id/tv_jenis_periksa2"
+                android:id="@+id/tv_jenis_periksa"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -115,7 +115,7 @@
                 tools:visibility="invisible" />
 
             <TextView
-                android:id="@+id/tv_download2"
+                android:id="@+id/tv_download"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"

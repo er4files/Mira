@@ -38,8 +38,7 @@ class DoctorAdapter(private var doctors: List<Doctor>) : RecyclerView.Adapter<Do
         private val doctorName: TextView = itemView.findViewById(R.id.doctor_name_item)
         private val doctorSpecialization: TextView = itemView.findViewById(R.id.doctor_specialist_item)
         private val doctorRating: RatingBar = itemView.findViewById(R.id.doctor_rating_item)
-        private val chatButton: Button = itemView.findViewById(R.id.chat_button)
-        private val callButton: Button = itemView.findViewById(R.id.call_button)
+        private val consulButton: Button = itemView.findViewById(R.id.btn_consul)
 
         fun bind(doctor: Doctor) {
             Glide.with(itemView.context).load(doctor.profile_picture).into(doctorImage)
@@ -47,12 +46,10 @@ class DoctorAdapter(private var doctors: List<Doctor>) : RecyclerView.Adapter<Do
             doctorSpecialization.text = doctor.spesialis
             doctorRating.rating = doctor.rating
 
-            chatButton.setOnClickListener {
+            consulButton.setOnClickListener {
                 // Handle chat action
             }
-            callButton.setOnClickListener {
-                // Handle call action
-            }
+
         }
     }
 }
