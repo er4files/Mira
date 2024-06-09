@@ -84,4 +84,6 @@
     <string name="save">Save</string>
     <string name="form_reservation_required">Please fill all required fields!</string>
     <string name="consult_now">consult now</string>
+    <string name="send_success">Berhasil terkirim</string>
+    <string name="send_error">Gagal terkirim</string>
 </resources>
