@@ -1,8 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Mira</string>
     <string name="title_home">Home</string>
     <string name="title_notifications">Notifications</string>
-    <string name="title_profile">Profil</string>
+    <string name="title_profile">Profile</string>
     <string name="title_reservation">Reservation</string>
     <string name="title_results">Results</string>
     <string name="hi">Hi, </string>
@@ -11,16 +12,16 @@
     <string name="features">Features</string>
     <string name="form_a_reservation">Form a Reservation</string>
     <string name="reservation_history">Reservation History</string>
-    <string name="chat_bot">Asisten Mira </string>
+    <string name="chat_bot">Mira Assistant</string>
     <string name="health_article">Health Article</string>
     <string name="result">Result</string>
     <string name="profile">Profile</string>
     <string name="reservation">Reservation</string>
-    <string name="selengkapnya">Selengkapnya...</string>
-    <string name="pemeriksaan_extrimitas_atas_pergelangan_tangan">Pemeriksaan Extrimitas Atas - Pergelangan Tangan</string>
+    <string name="selengkapnya">Read More...</string>
+    <string name="pemeriksaan_extrimitas_atas_pergelangan_tangan">Upper Extremity Examination - Wrist</string>
     <string name="rahmad_era_sugiarto">Rahmad Era Sugiarto</string>
-    <string name="tanggal_lahir">19 Januari 2024</string>
-    <string name="judul_article">Judul Article</string>
+    <string name="tanggal_lahir">January 19, 2024</string>
+    <string name="judul_article">Article Title</string>
     <string name="phone_number">+6287712345678</string>
     <string name="profile_others">Others</string>
     <string name="profile_help_center">Help Center</string>
@@ -39,25 +40,45 @@
     <string name="email">Email</string>
     <string name="reservation_phone_number">Phone Number</string>
     <string name="reservation_button_reserve">Reserve</string>
-
-    <string name="status_completed">Done</string>
+    <string name="status_completed">Completed</string>
     <string name="status_upcoming">Upcoming</string>
     <string name="doctor_consultation">Doctor Consultation</string>
     <string name="reservation_date">Reservation Date</string>
     <string name="reservation_select_date">Select Date</string>
-
     <string name="book_an_appointment">Book an Appointment</string>
-    <string name="form_reservation">Form Reservasi</string>
+    <string name="form_reservation">Reservation Form</string>
     <string name="health_news">Health News</string>
     <string name="doctor">Dr. John Smith</string>
     <string name="spesialis">Cardiologist</string>
     <string name="chat">Chat</string>
     <string name="call">Call</string>
     <string name="help_button_description">Help</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="reservation_select_time">Select Time</string>
     <string name="reservation_examination_type">Examination Type</string>
     <string name="fragment_reservation_select_date_first">Please select the date first!</string>
-
+    <string name="welcome_to_mira">Welcome to Mira</string>
+    <string name="your_revolutionary_solution_for_seamless_radiology_services_with_mira">Your revolutionary solution for seamless radiology services with MIRA</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="belum_punya_akun">Dont have an account?</string>
+    <string name="daftar_sekarang">Sign Up Now</string>
+    <string name="lupa_kata_sandi">Forgot password?</string>
+    <string name="password">Password</string>
+    <string name="silahkan_mengisi_email_dan_password_yang_sudah_terdaftar">Please enter your registered email and password</string>
+    <string name="silahkan_masukkan_data_diri_anda">Please enter your personal data</string>
+    <string name="name">Name</string>
+    <string name="phone_number_string">Phone Number</string>
+    <string name="sudah_punya_akun">Already have an account?</string>
+    <string name="masuk_sekarang">Login Now</string>
+    <string name="article">Article</string>
+    <string name="search">Search</string>
+    <string name="health_tips">Health Tips</string>
+    <string name="consultation">Consultation</string>
+    <string name="history">History</string>
+    <string name="notification">Notification</string>
+    <string name="upload_image_profile">Upload Profile Image</string>
+    <string name="masukkan_nama_lengkap">Enter full name</string>
+    <string name="masukkan_nomor_telepon">Enter phone number</string>
+    <string name="save">Save</string>
 </resources>

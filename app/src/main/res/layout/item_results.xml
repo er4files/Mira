@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:gravity="start">
+    android:gravity="start"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -17,9 +16,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_gravity="center"
-            android:gravity="start">
+            android:gravity="start"
+            android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -30,13 +29,13 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:gravity="start"
                     android:orientation="vertical"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
                     android:paddingTop="8dp"
-                    android:paddingBottom="16dp"
-                    android:layout_gravity="start"
-                    android:gravity="start">
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="16dp">
 
                     <TextView
                         android:id="@+id/tv_nama_pasien"
@@ -51,8 +50,8 @@
                         android:id="@+id/tv_date_reservation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:maxLines="2"
                         android:ellipsize="end"
+                        android:maxLines="2"
                         android:text="Tanggal Lahir"
                         android:textSize="14sp"
                         android:textStyle="normal" />
@@ -96,7 +95,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="2"
-                        android:text="Selengkapnya"
+                        android:text="@string/selengkapnya"
                         android:textSize="10sp"
                         android:textStyle="normal" />
                 </LinearLayout>

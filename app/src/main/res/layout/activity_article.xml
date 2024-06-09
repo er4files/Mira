@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -14,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:padding="14dp"
         android:elevation="5dp"
+        android:padding="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,7 +24,7 @@
             android:id="@+id/article_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Article"
+            android:text="@string/article"
             android:textColor="@color/gray"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -73,7 +72,7 @@
                 android:id="@+id/et_query"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Search"
+                android:hint="@string/search"
                 android:inputType="text"
                 android:maxLines="1" />
 
@@ -94,7 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:text="Health News"
+        android:text="@string/health_news"
         android:textColor="@color/gray"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -106,11 +105,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_health_news"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="horizontal"
         tools:listitem="@layout/item_article" />
 
     <!-- Health Tips Section -->
@@ -120,7 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:text="Health Tips"
+        android:text="@string/health_tips"
         android:textColor="@color/gray"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -132,11 +131,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_health_tips"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="horizontal"
         tools:listitem="@layout/item_article" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
