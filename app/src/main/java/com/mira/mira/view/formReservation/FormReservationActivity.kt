@@ -84,6 +84,8 @@ class FormReservationActivity : AppCompatActivity() {
                 val reservation = Reservation(name, address, dateBirth, gender, phone, email, date, time, type)
                 viewModel.addReservation(reservation)
                 finish()
+            }else{
+                showToast(getString(R.string.form_reservation_required))
             }
         }
 

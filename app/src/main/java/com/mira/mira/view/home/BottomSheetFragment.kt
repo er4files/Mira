@@ -1,52 +1,38 @@
-package com.mira.mira.view.reservation
+package com.mira.mira.view.home
 
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
 import android.widget.Toast
-import androidx.annotation.RequiresApi
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mira.mira.R
-import com.mira.mira.databinding.FragmentReservationBinding
+import com.mira.mira.databinding.BottomSheetFormBinding
 import com.mira.mira.view.CustomTimePickerDialog
 import com.mira.mira.view.formReservation.FormReservationActivity
-import com.mira.mira.view.history.HistoryActivity
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-class ReservationFragment : Fragment() {
-
-    private var _binding: FragmentReservationBinding? = null
+class BottomSheetFragment : BottomSheetDialogFragment() {
+    private var _binding: BottomSheetFormBinding? = null
+    private val binding get() = _binding!!
     private lateinit var date: String
 
-    private val binding get() = _binding!!
-
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val reservationViewModel =
-            ViewModelProvider(this).get(ReservationViewModel::class.java)
+    ): View? {
+        _binding = BottomSheetFormBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
+    }
 
-        _binding = FragmentReservationBinding.inflate(inflater, container, false)
-        val view = binding.root  // Dapatkan referensi ke root view
-
-        val historyIcon: RelativeLayout = view.findViewById(R.id.history_icon)
-        historyIcon.setOnClickListener {
-            val intent = Intent(activity, HistoryActivity::class.java)
-            startActivity(intent)
-        }
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val context = requireContext()
 
         binding.selectDateButton.setOnClickListener {
@@ -94,8 +80,11 @@ class ReservationFragment : Fragment() {
                 showToast(context, "Please select date and time for the reservation!")
             }
         }
+    }
 
-        return view
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun showTimePickerDialog() {
@@ -120,12 +109,11 @@ class ReservationFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     private fun showToast(context: Context, message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    }
+
+    companion object {
+        const val TAG = "BottomSheetFragment"
     }
 }

@@ -17,8 +17,8 @@ class ResultsAdapter(private var items: List<ResultItem>) :
     class ResultViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameTextView: TextView = view.findViewById(R.id.tv_nama_pasien)
         val dateTextView: TextView = view.findViewById(R.id.tv_date_reservation)
-        val examinationTypeTextView: TextView = view.findViewById(R.id.tv_jenis_periksa)
-        val downloadTextView: TextView = view.findViewById(R.id.tv_download)
+        val examinationTypeTextView: TextView = view.findViewById(R.id.tv_jenis_periksa2)
+        val downloadTextView: TextView = view.findViewById(R.id.tv_download2)
         val pdfImageView: ImageView = view.findViewById(R.id.iv_pdf)
 
         fun bind(item: ResultItem) {
@@ -43,7 +43,7 @@ class ResultsAdapter(private var items: List<ResultItem>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_results, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_result2, parent, false)
         return ResultViewHolder(view)
     }
 

@@ -120,10 +120,11 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
         // Form Reservation
+
         val featureFormReservation: LinearLayout = view.findViewById(R.id.feature_formreservation)
         featureFormReservation.setOnClickListener {
-            val intent = Intent(activity, FormReservationActivity::class.java)
-            startActivity(intent)
+            val bottomSheet = BottomSheetFragment()
+            bottomSheet.show(parentFragmentManager, BottomSheetFragment.TAG)
         }
         // History
         val featureHistory: LinearLayout = view.findViewById(R.id.feature_history)
