@@ -84,4 +84,6 @@
     <string name="save">Simpan</string>
     <string name="form_reservation_required">Silahkan mengisi semua data terlebih dahulu!</string>
     <string name="consult_now">konsultasi sekarang</string>
+    <string name="send_success">Berhasil terkirim</string>
+    <string name="send_error">Gagal terkirim</string>
 </resources>

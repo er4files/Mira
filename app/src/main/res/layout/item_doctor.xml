@@ -66,7 +66,7 @@
                     android:rating="4" />
 
                 <Button
-                    android:id="@+id/btn_consul"
+                    android:id="@+id/consul_now"
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
                     android:backgroundTint="@android:color/holo_blue_light"
