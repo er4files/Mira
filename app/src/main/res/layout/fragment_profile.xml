@@ -12,11 +12,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:padding="16dp"
         android:elevation="5dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/profile_title"
@@ -58,14 +58,15 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
 
 
             <TextView
                 android:id="@+id/tv_user"
+                style="@style/profileHeaderText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -75,11 +76,10 @@
                 android:text=""
                 android:textSize="16sp"
                 android:textStyle="bold"
-                style="@style/profileHeaderText"
+                app:layout_constraintBottom_toTopOf="@id/tv_phone"
                 app:layout_constraintEnd_toStartOf="@id/btn_edit_profile"
                 app:layout_constraintStart_toEndOf="@id/iv_profile_user"
-                app:layout_constraintTop_toTopOf="@id/iv_profile_user"
-                app:layout_constraintBottom_toTopOf="@id/tv_phone" />
+                app:layout_constraintTop_toTopOf="@id/iv_profile_user" />
 
             <TextView
                 android:id="@+id/tv_phone"
@@ -87,17 +87,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:text=""
+                app:layout_constraintBottom_toBottomOf="@id/iv_profile_user"
                 app:layout_constraintStart_toEndOf="@id/iv_profile_user"
-                app:layout_constraintTop_toBottomOf="@id/tv_user"
-                app:layout_constraintBottom_toBottomOf="@id/iv_profile_user" />
+                app:layout_constraintTop_toBottomOf="@id/tv_user" />
 
             <ImageButton
                 android:id="@+id/btn_edit_profile"
+                style="@style/icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#00FFFFFF"
                 android:src="@drawable/ic_edit_24"
-                style="@style/icon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -107,6 +107,7 @@
     <!-- Navigation Buttons -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_navigate_history"
+        style="@style/profileNavigateButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -116,7 +117,6 @@
         android:textAlignment="textStart"
         app:icon="@drawable/ic_history"
         app:iconGravity="textStart"
-        style="@style/profileNavigateButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardView" />

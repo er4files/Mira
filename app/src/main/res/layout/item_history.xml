@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:gravity="start">
+    android:gravity="start"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -32,25 +31,26 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/tv_hari_kunjungan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
                     android:text="Monday"
                     android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:layout_marginEnd="16dp" />
+                    android:textStyle="normal" />
 
                 <TextView
                     android:id="@+id/tv_tanggal_kunjungan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
                     android:text="01 Jan 1990"
                     android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:layout_marginEnd="16dp" />
+                    android:textStyle="normal" />
 
                 <TextView
                     android:id="@+id/tv_waktu_kunjungan"
@@ -93,9 +93,9 @@
                     android:id="@+id/tv_status_kunjungan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/background_status_green"
                     android:gravity="center"
                     android:padding="4dp"
-                    android:background="@drawable/background_status_green"
                     android:text="Akan Datang"
                     android:textColor="#FFFFFF"
                     android:textSize="12sp"
