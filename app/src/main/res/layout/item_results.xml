@@ -55,6 +55,7 @@
                         android:text="Tanggal Lahir"
                         android:textSize="14sp"
                         android:textStyle="normal" />
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
