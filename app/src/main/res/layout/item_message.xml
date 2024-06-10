@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:background="@drawable/rounded_message_yellow"
+        android:background="@drawable/rounded_message_blue"
         android:maxWidth="250dp"
         android:padding="10dp"
         android:textAppearance="?android:attr/textAppearanceMedium"

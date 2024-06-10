@@ -38,26 +38,22 @@ class ChatActivity : AppCompatActivity() {
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Retrieve doctor ID from intent
         doctorId = intent.getStringExtra("doctor_id") ?: ""
 
-        // Get current user ID from Firebase Authentication
         val firebaseUser = FirebaseAuth.getInstance().currentUser
         currentUserId = firebaseUser?.uid ?: ""
 
-        // Get current user's name from Firestore or API
         firestore = FirebaseFirestore.getInstance()
         fetchCurrentUser()
 
-        // Set up RecyclerView
         val layoutManager = LinearLayoutManager(this)
         layoutManager.stackFromEnd = true
         binding.messageRecyclerView.layoutManager = layoutManager
 
-        // Set up FirebaseRecyclerAdapter
         val query = FirebaseDatabase.getInstance("https://mira-team-default-rtdb.asia-southeast1.firebasedatabase.app").reference
-            .child("chats")
-            .child("$currentUserId-$doctorId")
+            .child("messages")
+            .child(currentUserId)
+            .child(doctorId)
 
         val options = FirebaseRecyclerOptions.Builder<Message>()
             .setQuery(query, Message::class.java)
@@ -66,12 +62,10 @@ class ChatActivity : AppCompatActivity() {
         adapter = MessageAdapter(options)
         binding.messageRecyclerView.adapter = adapter
 
-        // Set up send button click listener
         binding.sendButton.setOnClickListener {
             sendMessage()
         }
 
-        // Enable send button when there is text in the EditText
         binding.messageEditText.addTextChangedListener {
             binding.sendButton.isEnabled = it.toString().trim().isNotEmpty()
         }
@@ -105,6 +99,7 @@ class ChatActivity : AppCompatActivity() {
                     val userData = response.body()
                     userData?.let {
                         currentUser = it.username
+                        currentUserId = it.user_id
                     }
                 } else {
                     currentUser = "Anonymous"
@@ -124,36 +119,35 @@ class ChatActivity : AppCompatActivity() {
             val message = Message(currentUserId, currentUser, messageText, System.currentTimeMillis())
 
             val messagesRef = FirebaseDatabase.getInstance("https://mira-team-default-rtdb.asia-southeast1.firebasedatabase.app").reference
-                .child("chats")
-                .child("$currentUserId-$doctorId")
+                .child("messages")
+                .child(currentUserId)
+                .child(doctorId)
 
             messagesRef.push().setValue(message)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        // Message sent successfully
                         Log.d(TAG, "Message sent successfully")
+                        binding.messageEditText.text.clear()
                     } else {
-                        // Failed to send message
                         Log.e(TAG, "Failed to send message", task.exception)
                     }
                 }
-
-            binding.messageEditText.text.clear()
         }
     }
 
     override fun onStart() {
         super.onStart()
         adapter.startListening()
+        Log.d(TAG, "Listening for messages")
     }
 
     override fun onStop() {
         super.onStop()
         adapter.stopListening()
+        Log.d(TAG, "Stop Listening for messages")
     }
 
     private fun retrieveTokenFromSharedPreferences(): String {
-        // Retrieve token from SharedPreferences or other source
         val sharedPreferences = getSharedPreferences("user_session", MODE_PRIVATE)
         return sharedPreferences.getString("auth_token", "") ?: ""
     }

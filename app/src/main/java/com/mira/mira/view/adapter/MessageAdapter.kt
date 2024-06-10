@@ -15,10 +15,9 @@ class MessageAdapter(options: FirebaseRecyclerOptions<Message>) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(message: Message) {
-            binding.tvMessenger.text = message.senderName // Use senderName
+            binding.tvMessenger.text = message.senderName
             binding.tvMessage.text = message.text
-            // You might want to format timestamp to a readable date
-            binding.tvTimestamp.text = java.text.DateFormat.getDateTimeInstance().format(message.timestamp)
+            binding.tvTimestamp.text = message.timestamp.toString()
         }
     }
 
@@ -30,5 +29,10 @@ class MessageAdapter(options: FirebaseRecyclerOptions<Message>) :
 
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int, model: Message) {
         holder.bind(model)
+    }
+
+    override fun onDataChanged() {
+        super.onDataChanged()
+        notifyDataSetChanged()
     }
 }
