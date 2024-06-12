@@ -54,7 +54,7 @@ class FormReservationActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
         binding.spinnerType.adapter = adapter
 
-        binding.editTextDate.setOnClickListener{
+        binding.selectDateButton.setOnClickListener{
             val today = Calendar.getInstance()
             val year = today.get(Calendar.YEAR)
             val month = today.get(Calendar.MONTH)
