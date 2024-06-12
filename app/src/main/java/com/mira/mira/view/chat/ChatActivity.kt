@@ -50,6 +50,9 @@ class ChatActivity : AppCompatActivity() {
         layoutManager.stackFromEnd = true
         binding.messageRecyclerView.layoutManager = layoutManager
 
+        Log.d(TAG, "Current user ID: $currentUserId") // Cek nilai currentUserId di sini
+
+        // Set up FirebaseRecyclerAdapter
         val query = FirebaseDatabase.getInstance("https://mira-team-default-rtdb.asia-southeast1.firebasedatabase.app").reference
             .child("messages")
             .child(currentUserId)
@@ -58,6 +61,8 @@ class ChatActivity : AppCompatActivity() {
         val options = FirebaseRecyclerOptions.Builder<Message>()
             .setQuery(query, Message::class.java)
             .build()
+
+        Log.d(TAG, "Querying database for messages: $query")
 
         adapter = MessageAdapter(options)
         binding.messageRecyclerView.adapter = adapter
@@ -100,16 +105,35 @@ class ChatActivity : AppCompatActivity() {
                     userData?.let {
                         currentUser = it.username
                         currentUserId = it.user_id
+                        Log.d(TAG, "User data retrieved successfully: $currentUserId")
+                        updateAdapterQuery() // Mengupdate adapter query setelah currentUserId diperbarui
+                    } ?: run {
+                        Log.e(TAG, "User data is null")
                     }
                 } else {
                     currentUser = "Anonymous"
+                    Log.d(TAG, "Failed to retrieve user data")
                 }
             }
 
             override fun onFailure(call: Call<UserData>, t: Throwable) {
                 currentUser = "Anonymous"
+                Log.d(TAG, "Failed to retrieve user data: ${t.message}")
             }
         })
+    }
+
+    private fun updateAdapterQuery() {
+        val query = FirebaseDatabase.getInstance("https://mira-team-default-rtdb.asia-southeast1.firebasedatabase.app").reference
+            .child("messages")
+            .child(currentUserId)
+            .child(doctorId)
+
+        val options = FirebaseRecyclerOptions.Builder<Message>()
+            .setQuery(query, Message::class.java)
+            .build()
+
+        adapter.updateOptions(options)
     }
 
     private fun sendMessage() {
