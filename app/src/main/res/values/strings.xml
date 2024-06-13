@@ -86,4 +86,7 @@
     <string name="consult_now">consult now</string>
     <string name="send_success">Berhasil terkirim</string>
     <string name="send_error">Gagal terkirim</string>
+    <string name="result_detail_scan_result">Scan Result</string>
+    <string name="detail_result">Result :</string>
+    <string name="download_pdf_file">Download PDF File</string>
 </resources>
