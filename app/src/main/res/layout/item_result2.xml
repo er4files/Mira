@@ -73,7 +73,7 @@
                 android:layout_marginStart="16dp"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="Tanggal Lahir"
+                android:text="Tanggal Periksa"
                 android:textSize="14sp"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
