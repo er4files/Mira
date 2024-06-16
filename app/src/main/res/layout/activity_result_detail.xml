@@ -9,22 +9,23 @@
 
     <!--Top Header Layout-->
 
+    <!--Top Header Layout-->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/topbar_reservation"
+        android:id="@+id/topbar_detailresult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:elevation="5dp"
-        android:padding="8dp"
+        android:padding="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/reservation_title"
+            android:id="@+id/signup_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/result_detail_scan_result"
+            android:text="Detail Result"
             android:textColor="@color/gray"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -33,21 +34,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <RelativeLayout
-            android:id="@+id/history_icon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+        <ImageView
+            android:id="@+id/back_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="6dp"
+            android:src="@drawable/ic_back"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_centerInParent="true"
-                android:padding="6dp"
-                android:src="@drawable/ic_history" />
-        </RelativeLayout>
+            app:layout_constraintEnd_toStartOf="@+id/signup_title"
+            app:layout_constraintHorizontal_bias="0.017"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -57,7 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topbar_reservation"
+        app:layout_constraintTop_toBottomOf="@+id/topbar_detailresult"
         app:layout_constraintVertical_bias="1.0">
 
 
