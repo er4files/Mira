@@ -20,9 +20,6 @@ object ApiConfig {
 
 class MiraApiConfig{
     companion object {
-
-
-
         fun getApiService(): MiraApiService {
             val loggingInterceptor = HttpLoggingInterceptor()
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)

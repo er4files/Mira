@@ -19,12 +19,13 @@ import com.mira.mira.view.history.HistoryActivity
 import com.mira.mira.view.history.HistoryViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
 
 
 class FormReservationActivity : AppCompatActivity() {
     private lateinit var binding:ActivityFormReservationBinding
 
-    private var reservationTypes  : Array<String> = arrayOf("Tumor Otak", "Ginjal", "Paru-paru", "Kanker Payudara")
+    private lateinit var reservationTypes  : Array<String>
     private lateinit var date : String
     private lateinit var time : String
 
@@ -34,6 +35,14 @@ class FormReservationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFormReservationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val currentLocale = Locale.getDefault()
+
+        if(currentLocale.language == "id"){
+            reservationTypes = arrayOf("Tumor Otak", "Ginjal", "Paru-paru", "Kanker Payudara")
+        }else{
+            reservationTypes = arrayOf("Brain Tumor", "Kidney", "Lungs", "Breast Cancer")
+        }
 
         val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
         val token = sharedPreferences.getString("auth_token", "") ?: ""
@@ -78,9 +87,19 @@ class FormReservationActivity : AppCompatActivity() {
             val address = binding.addressEditText.text.toString()
             val email = binding.emailEditText.text.toString()
             val phone = binding.phoneEditText.text.toString()
-            val type = binding.spinnerType.selectedItem.toString()
+            var type : String = ""
+            if(currentLocale.language == "id"){
+                type = binding.spinnerType.selectedItem.toString()
+            }else{
+                when(binding.spinnerType.selectedItem.toString()){
+                    "Brain Tumor" -> type = "Tumor Otak"
+                    "Kidney" -> type = "Ginjal"
+                    "Lungs" -> type = "Paru-paru"
+                    "Breast Cancer" -> type = "Kanker Payudara"
+                }
+            }
 
-            if(name.isNotEmpty() && dateBirth.isNotEmpty() && gender.isNotEmpty() && address.isNotEmpty() && email.isNotEmpty() && phone.isNotEmpty() && type.isNotEmpty()){
+            if(name.isNotEmpty() && dateBirth.isNotEmpty() && gender.isNotEmpty() && address.isNotEmpty() && email.isNotEmpty() && phone.isNotEmpty() && (type.isNotEmpty() && type != "")){
                 val reservation = Reservation(name, address, dateBirth, gender, phone, email, date, time, type)
                 viewModel.addReservation(reservation)
                 finish()
