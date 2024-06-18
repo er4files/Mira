@@ -60,4 +60,9 @@ interface MiraApiService {
         @Field("jam_kunjungan") jam_kunjungan : String,
         @Field("jenis_periksa") jenis_periksa : String
     ) : Call<ReservationAddResponse>
+
+    @GET("/predict/{id}")
+    fun getResult(@Header("Authorization") token: String,
+                  @Path("id") resultId : String
+                  ): Call<List<Doctor>>
 }

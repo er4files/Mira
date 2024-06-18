@@ -24,7 +24,7 @@ import java.util.Calendar
 class FormReservationActivity : AppCompatActivity() {
     private lateinit var binding:ActivityFormReservationBinding
 
-    private var reservationTypes  : Array<String> = arrayOf("Tumor Otak", "Kanker")
+    private var reservationTypes  : Array<String> = arrayOf("Tumor Otak", "Ginjal", "Paru-paru", "Kanker Payudara")
     private lateinit var date : String
     private lateinit var time : String
 
